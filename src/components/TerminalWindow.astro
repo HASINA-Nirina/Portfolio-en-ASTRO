@@ -1,0 +1,23 @@
+---
+import TitleBar from './TitleBar.astro';
+---
+<div class="desktop-backdrop">
+  <div class="glow glow-blue"></div>
+  <div class="glow glow-green"></div>
+  <div class="grid-overlay"></div>
+</div>
+
+<div class="terminal-window" id="terminalWindow">
+  <TitleBar />
+  <main class="terminal-body" id="terminalBody">
+    <slot />
+  </main>
+</div>
+
+<script>
+  const maximizeToggle = document.getElementById('maximizeToggle');
+  const terminalWindowEl = document.getElementById('terminalWindow');
+  maximizeToggle?.addEventListener('click', () => {
+    terminalWindowEl?.classList.toggle('maximized');
+  });
+</script>
