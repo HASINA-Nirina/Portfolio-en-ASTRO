@@ -520,3 +520,17 @@ a.contact-row:hover { border-color: var(--accent-green); color: var(--text-prima
   padding: 10px 12px; resize: vertical;
 }
 .contact-form input:focus, .contact-form textarea:focus { outline: none; border-color: var(--accent-blue); }
+
+/* ===== BOOT SCREEN ===== */
+.boot-screen {
+  position: fixed; inset: 0; z-index: 999;
+  background: #05070c; color: #7ee0a8;
+  font-family: var(--font-display); font-size: 13px;
+  padding: 6vh 6vw; display: flex; flex-direction: column;
+  transition: opacity .5s ease, visibility .5s ease;
+}
+.boot-screen.hidden { opacity: 0; visibility: hidden; pointer-events: none; }
+.boot-lines div { margin-bottom: 6px; opacity: 0; animation: bootIn .35s forwards; white-space: pre-wrap; }
+@keyframes bootIn { to { opacity: 1; } }
+.boot-lines .ok { color: var(--accent-green); }
+.boot-lines .dim { color: #4a5568; }

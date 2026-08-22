@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import BootScreen from '../components/BootScreen.astro';
 
 interface Props {
   title?: string;
@@ -22,6 +23,7 @@ const { title = "Hasinirina Jean de Dieu — Portfolio" } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
+    <BootScreen />
     <slot />
   </body>
 </html>

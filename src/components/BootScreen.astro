@@ -1,0 +1,35 @@
+---
+---
+<div class="boot-screen" id="bootScreen" aria-hidden="true">
+  <div class="boot-lines" id="bootLines"></div>
+</div>
+
+<script>
+  const bootScreen = document.getElementById('bootScreen');
+  const bootLines = document.getElementById('bootLines');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const messages = [
+    { text: '$ ./init-portfolio.sh', cls: '' },
+    { text: '[OK] Chargement du profil...', cls: 'ok' },
+    { text: '[OK] Connexion aux projets...', cls: 'ok' },
+    { text: '[OK] Compilation des compétences...', cls: 'ok' },
+    { text: 'Bienvenue, portfolio prêt.', cls: 'dim' },
+  ];
+
+  if (bootScreen && bootLines) {
+    if (reduceMotion) {
+      bootScreen.classList.add('hidden');
+    } else {
+      messages.forEach((msg, i) => {
+        const div = document.createElement('div');
+        div.textContent = msg.text;
+        if (msg.cls) div.classList.add(msg.cls);
+        div.style.animationDelay = (i * 0.22) + 's';
+        bootLines.appendChild(div);
+      });
+      const totalTime = messages.length * 220 + 500;
+      setTimeout(() => bootScreen.classList.add('hidden'), totalTime);
+    }
+  }
+</script>
