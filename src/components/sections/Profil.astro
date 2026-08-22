@@ -1,27 +1,14 @@
 ---
-import { Image } from 'astro:assets';
-import profilePhoto from '../../assets/profile.png';
 ---
 <section id="profil" class="section" data-section>
-  <div class="section-inner">
-    <p class="eyebrow"><span class="dot"></span> cat profil.md</p>
-    <h2 class="section-title">Profil</h2>
-    <div class="profile-card">
-      <div class="profile-photo">
-        <Image src={profilePhoto} alt="Photo de Hasinirina Jean de Dieu" width={128} height={128} />
-      </div>
-      <div class="profile-text">
-        <p>Je suis <strong>HASINIRINA Jean de Dieu</strong>, étudiant en première année de Master en Informatique Générale à l'École Nationale d'Informatique (ENI) de Fianarantsoa. Passionné par le développement web et le développement d'applications mobiles, j'utilise des technologies modernes comme <strong>React</strong> et <strong>Next.js</strong> ainsi que le framework <strong>Flutter</strong> pour créer des applications performantes et intuitives.</p>
-        <p>Curieux et créatif, je continue de perfectionner Git et GitHub pour le travail collaboratif, et je m'inspire de mes loisirs — jeux vidéo et musique — pour nourrir ma créativité. Je suis à la recherche d'un <strong>stage de 3 mois</strong> pour mettre mes compétences au service de vos projets.</p>
-        <blockquote class="profile-quote">
-          <span class="quote-mark">&gt;</span> « Il n'y a qu'une façon d'échouer, c'est d'abandonner avant d'avoir réussi. »
-          — Georges Clémenceau
-        </blockquote>
-        <ul class="profile-meta">
-          <li><span class="meta-key">Langues</span><span class="meta-val">Anglais (Bien) · Français (Assez bien) · Malagasy (Maternelle)</span></li>
-          <li><span class="meta-key">Localisation</span><span class="meta-val">Lot IG 330/3204 Igaga, Fianarantsoa</span></li>
-        </ul>
-      </div>
-    </div>
+  <p class="eyebrow"><span class="dot"></span> cat profil.md</p>
+  <h2 class="section-title">À propos</h2>
+  <div class="profile-card">
+    <p>Je suis <strong>HASINIRINA Jean de Dieu</strong>, étudiant en première année de Master en Informatique Générale à l'École Nationale d'Informatique (ENI) de Fianarantsoa. Passionné par le développement web et le développement d'applications mobiles, j'utilise des technologies modernes comme <strong>React</strong>, <strong>Next.js</strong>, <strong>Tailwind CSS</strong> et le framework <strong>Flutter</strong> (mobile) pour créer des applications performantes et intuitives.</p>
+    <p>Je continue d'apprendre <strong>Git</strong> et <strong>GitHub</strong> pour la gestion de version et le travail collaboratif. Compétent en bureautique (Word, PowerPoint, Excel), je communique couramment en français et je continue aussi de perfectionner mon anglais. Curieux et créatif, je m'inspire de mes loisirs tels que les mangas, les animes et la musique.</p>
+    <blockquote class="profile-quote">
+      <span class="quote-mark">&gt;</span> « Il n'y a qu'une façon d'échouer, c'est d'abandonner avant d'avoir réussi. »
+      — Georges Clémenceau
+    </blockquote>
   </div>
 </section>

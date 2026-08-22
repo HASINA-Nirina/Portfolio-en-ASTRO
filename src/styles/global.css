@@ -410,3 +410,7 @@ a.contact-row:hover { border-color: var(--accent-green); color: var(--text-prima
   .hero-photo-wrap { width: 180px; height: 180px; }
   .hero-photo { width: 180px; height: 180px; }
 }
+
+.profile-card { max-width: 760px; }
+.profile-card p { font-size: 15px; line-height: 1.8; color: var(--text-secondary); margin: 0 0 16px; }
+.profile-card strong { color: var(--accent-green); }
