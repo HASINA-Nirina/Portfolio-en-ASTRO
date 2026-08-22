@@ -1,48 +1,23 @@
 ---
+import { Image } from 'astro:assets';
+import profilePhoto from '../../assets/profile.png';
 ---
 <section id="accueil" class="section section-hero" data-section>
-  <div class="section-inner">
-    <p class="eyebrow"><span class="dot"></span> whoami</p>
-    <h1 class="hero-name" id="typeName"></h1>
-    <p class="hero-role"><span class="bracket">&lt;</span>Développeur&nbsp;Informatique<span class="bracket">/&gt;</span></p>
-    <p class="hero-sub">Étudiant en Master&nbsp;1 Informatique Générale — École Nationale d'Informatique, Fianarantsoa</p>
-    <p class="hero-desc">Passionné par le développement mobile <span class="tag">Flutter</span> et web <span class="tag">React / Next.js</span> <span class="tag">PHP</span>. À la recherche d'un stage de 3 mois pour mettre mes compétences au service de vos projets.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary" data-target="contact">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 6l-10 7L2 6"/><path d="M2 6h20v12H2z"/></svg>
-        Me contacter
-      </a>
-      <a href="https://portfolio-hasina.vercel.app" target="_blank" rel="noopener" class="btn btn-ghost">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15 15 0 010 20 15 15 0 010-20z"/></svg>
-        Voir en ligne
-      </a>
+  <div class="hero-grid">
+    <div class="hero-photo-wrap">
+      <div class="hero-photo-glow"></div>
+      <Image src={profilePhoto} alt="Photo de Hasinirina Jean de Dieu" width={280} height={280} class="hero-photo" />
+      <span class="hero-badge">Frontend Developer</span>
     </div>
-    <div class="hero-stats">
-      <div class="stat"><span class="stat-num">5+</span><span class="stat-label">Projets réalisés</span></div>
-      <div class="stat"><span class="stat-num">3</span><span class="stat-label">Langages SGBD</span></div>
-      <div class="stat"><span class="stat-num">M1</span><span class="stat-label">ENI Fianarantsoa</span></div>
+    <div class="hero-content">
+      <p class="eyebrow"><span class="dot"></span> whoami</p>
+      <h1 class="hero-name">Bonjour, je suis <span class="hero-name-highlight">HASINIRINA Jean de Dieu</span></h1>
+      <p class="hero-sub">Étudiant en Informatique Générale à l'ENI Fianarantsoa</p>
+      <p class="hero-desc">Passionné par le développement web <span class="tag">React</span> <span class="tag">Next.js</span> et mobile <span class="tag">Flutter</span>.</p>
+      <div class="hero-actions">
+        <a href="#projets" class="btn btn-primary" data-target="projets">Voir mes projets</a>
+        <a href="/Hasina CV.pdf" download class="btn btn-ghost">Télécharger mon CV</a>
+      </div>
     </div>
   </div>
-  <div class="scroll-hint" aria-hidden="true"><span></span>scroll</div>
 </section>
-
-<script>
-  const typeName = document.getElementById('typeName');
-  const fullName = 'HASINIRINA Jean de Dieu';
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  function typeWriter() {
-    if (!typeName) return;
-    if (reduceMotion) { typeName.textContent = fullName; return; }
-    let i = 0;
-    const speed = 55;
-    (function step() {
-      if (i <= fullName.length) {
-        typeName.textContent = fullName.slice(0, i);
-        i++;
-        setTimeout(step, speed);
-      }
-    })();
-  }
-  setTimeout(typeWriter, reduceMotion ? 0 : 600);
-</script>
