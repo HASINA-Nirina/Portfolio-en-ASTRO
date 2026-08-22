@@ -2,6 +2,7 @@
 import TitleBar from './TitleBar.astro';
 import Nav from './Nav.astro';
 import NavScript from './NavScript.astro';
+import MobileDock from './MobileDock.astro';
 ---
 <div class="desktop-backdrop">
   <div class="glow glow-blue"></div>
@@ -16,7 +17,7 @@ import NavScript from './NavScript.astro';
     <slot />
   </main>
 </div>
-
+<MobileDock />
 <NavScript />
 
 <script>

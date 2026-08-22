@@ -2,8 +2,11 @@
 ---
 <script>
   const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav-link'));
+  const dockLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.dock-link'));
   const navIndicator = document.getElementById('navIndicator');
+  const dockIndicator = document.getElementById('dockIndicator');
   const headbar = document.getElementById('headbar');
+  const mobileDock = document.getElementById('mobileDock');
   const activeSectionLabel = document.getElementById('activeSection');
   const terminalBody = document.getElementById('terminalBody');
   const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-section]'));
@@ -18,29 +21,25 @@
 
   function setActive(id: string) {
     navLinks.forEach(l => l.classList.toggle('active', l.dataset.target === id));
+    dockLinks.forEach(l => l.classList.toggle('active', l.dataset.target === id));
     if (activeSectionLabel) activeSectionLabel.textContent = id;
+
     const activeNav = navLinks.find(l => l.dataset.target === id);
+    const activeDock = dockLinks.find(l => l.dataset.target === id);
     moveIndicator(navIndicator, activeNav, headbar);
+    moveIndicator(dockIndicator, activeDock, mobileDock);
   }
 
-  // const observer = new IntersectionObserver((entries) => {
-  //   entries.forEach(entry => {
-  //     if (entry.intersectionRatio > 0.45) {
-  //       setActive(entry.target.id);
-  //     }
-  //   });
-  // }, { root: terminalBody, threshold: [0, 0.45, 0.6] });
-
   const observer = new IntersectionObserver((entries) => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('in-view');
-    }
-    if (entry.intersectionRatio > 0.45) {
-      setActive(entry.target.id);
-    }
-  });
-}, { root: terminalBody, threshold: [0, 0.45, 0.6] });
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in-view');
+      }
+      if (entry.intersectionRatio > 0.45) {
+        setActive(entry.target.id);
+      }
+    });
+  }, { root: terminalBody, threshold: [0, 0.45, 0.6] });
 
   sections.forEach(sec => observer.observe(sec));
 
@@ -54,11 +53,13 @@
     setActive(targetId);
   }
 
-  // navLinks.forEach(l => l.addEventListener('click', handleNavClick)); Tsy izy
   navLinks.forEach(l => l.addEventListener('click', handleNavClick));
-document.querySelectorAll<HTMLAnchorElement>('a[data-target]').forEach(l => {
-  if (!l.classList.contains('nav-link')) l.addEventListener('click', handleNavClick);
-});
+  dockLinks.forEach(l => l.addEventListener('click', handleNavClick));
+  document.querySelectorAll<HTMLAnchorElement>('a[data-target]').forEach(l => {
+    if (!l.classList.contains('nav-link') && !l.classList.contains('dock-link')) {
+      l.addEventListener('click', handleNavClick);
+    }
+  });
 
   window.addEventListener('resize', () => {
     const activeId = activeSectionLabel ? activeSectionLabel.textContent : 'accueil';
