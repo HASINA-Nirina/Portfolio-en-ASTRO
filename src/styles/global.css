@@ -76,13 +76,6 @@ a { text-decoration: none; color: inherit; }
 .glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .35; }
 .glow-blue { width: 46vw; height: 46vw; background: var(--accent-blue); top: -12%; left: -8%; }
 .glow-green { width: 38vw; height: 38vw; background: var(--accent-green); bottom: -14%; right: -6%; opacity: .22; }
-.grid-overlay {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(255,255,255,0.025) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(255,255,255,0.025) 1px, transparent 1px);
-  background-size: 42px 42px;
-}
 
 /* ===== TERMINAL WINDOW ===== */
 .terminal-window {
