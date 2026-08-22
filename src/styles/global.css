@@ -151,7 +151,10 @@ a { text-decoration: none; color: inherit; }
 .terminal-body {
   flex: 1; overflow-y: auto; overflow-x: hidden;
   background: var(--bg-body);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.terminal-body::-webkit-scrollbar { display: none; }
 
 /* ===== HEADBAR ===== */
 .headbar {
@@ -187,10 +190,29 @@ a { text-decoration: none; color: inherit; }
 
 /* ===== SECTIONS (temporaire, sera enrichi à l'étape 6) ===== */
 .section {
+  position: relative;
   min-height: 100%;
-  padding: 56px 64px 72px;
+  padding: 56px 2cm 72px;
   border-bottom: 1px dashed var(--border-soft);
+  overflow: hidden;
 }
+.section::before {
+  content: '';
+  position: absolute; inset: -60px;
+  z-index: 0;
+  filter: blur(60px);
+  opacity: .3;
+  pointer-events: none;
+}
+[data-theme="light"] .section::before { opacity: .15; }
+.section > * { position: relative; z-index: 1; }
+
+#accueil::before { background: radial-gradient(circle at 15% 20%, var(--accent-blue) 0%, transparent 45%), radial-gradient(circle at 85% 80%, var(--accent-green) 0%, transparent 50%); }
+#profil::before { background: conic-gradient(from 120deg at 50% 50%, var(--accent-blue-glow), transparent 30%, var(--accent-green-glow) 60%, transparent); }
+#competences::before { background: radial-gradient(circle at 75% 25%, var(--accent-green) 0%, transparent 45%), radial-gradient(circle at 15% 85%, var(--accent-blue) 0%, transparent 50%); }
+#projets::before { background: radial-gradient(circle at 25% 75%, var(--accent-blue) 0%, transparent 45%), radial-gradient(circle at 90% 15%, var(--accent-green) 0%, transparent 45%); }
+#formation::before { background: radial-gradient(circle at 50% 40%, var(--accent-green) 0%, transparent 55%); }
+#contact::before { background: radial-gradient(circle at 20% 30%, var(--accent-blue) 0%, transparent 45%), radial-gradient(circle at 80% 75%, var(--accent-green) 0%, transparent 45%); }
 .section:last-of-type { border-bottom: none; }
 
 /* ===== SECTION COMMON ===== */
