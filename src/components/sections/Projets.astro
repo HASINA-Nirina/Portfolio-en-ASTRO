@@ -1,0 +1,84 @@
+---
+const projects = [
+  {
+    title: "Application Web — Ventes aux Enchères en ligne",
+    date: "Mai 2026",
+    stack: "React (Next.js) · Node.js · PostgreSQL",
+    points: [
+      "Application full-stack de ventes aux enchères avec gestion des offres en temps réel.",
+      "Interface utilisateur intuitive, axée sur l'ergonomie et l'expérience (IHM).",
+    ],
+    dotType: "",
+    links: [],
+  },
+  {
+    title: "Application Android — Quiz Battle Géolocalisé",
+    date: "Juin 2025",
+    stack: "Flutter · Dart · Supabase · Socket.io",
+    points: [
+      "Quiz multijoueur en temps réel avec géolocalisation entre amis.",
+      "Gestion de catégories de questions, niveaux de difficulté, mode multijoueur.",
+      "Hébergement BDD sur Supabase, communication temps réel.",
+    ],
+    dotType: "",
+    links: [
+      { label: "Dépôt GitHub", url: "https://github.com/Yannick220291/quiz_gamifie" },
+      { label: "Démo en ligne", url: "https://quizgame-site-production.up.railway.app" },
+    ],
+  },
+  {
+    title: "Cosmétique E-commerce",
+    date: "Projet personnel",
+    stack: "Spring Boot · PostgreSQL · React · Tailwind CSS",
+    points: ["Plateforme e-commerce pour produits cosmétiques : catalogue, panier et gestion des commandes."],
+    dotType: "",
+    links: [{ label: "Dépôt GitHub", url: "https://github.com/Yannick220291/cosmetique" }],
+  },
+  {
+    title: "Stage — Gestion Formation ECAT Taratra",
+    date: "Sept. – Nov. 2025 · 3 mois",
+    stack: "Next.js 15 · FastAPI (Python) · PostgreSQL · Tailwind CSS",
+    points: ["Système de gestion de formations à distance par antennes, avec paiements et forum de discussion."],
+    dotType: "stage",
+    links: [],
+  },
+  {
+    title: "Projet Fin d'Année — Gestion des Notes des Élèves",
+    date: "2022 – 2023",
+    stack: "C++ · Qt Creator · XAMPP",
+    points: ["Application desktop de gestion des notes avec interface graphique Qt."],
+    dotType: "",
+    links: [],
+  },
+];
+---
+<section id="projets" class="section" data-section>
+  <div class="section-inner">
+    <p class="eyebrow"><span class="dot"></span> git log --oneline ./projets</p>
+    <h2 class="section-title">Expériences &amp; Projets</h2>
+    <div class="timeline">
+      {projects.map((p) => (
+        <div class="tl-item">
+          <div class:list={["tl-dot", { "tl-dot-stage": p.dotType === "stage" }]}></div>
+          <div class="tl-content">
+            <div class="tl-top">
+              <h3>{p.title}</h3>
+              <span class="tl-date">{p.date}</span>
+            </div>
+            <p class="tl-stack">{p.stack}</p>
+            <ul>
+              {p.points.map((pt) => <li>{pt}</li>)}
+            </ul>
+            {p.links.length > 0 && (
+              <div class="tl-links">
+                {p.links.map((link) => (
+                  <a href={link.url} target="_blank" rel="noopener">{link.label}</a>
+                ))}
+              </div>
+            )}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

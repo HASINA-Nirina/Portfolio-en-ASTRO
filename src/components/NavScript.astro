@@ -43,7 +43,11 @@
     setActive(targetId);
   }
 
+  // navLinks.forEach(l => l.addEventListener('click', handleNavClick)); Tsy izy
   navLinks.forEach(l => l.addEventListener('click', handleNavClick));
+document.querySelectorAll<HTMLAnchorElement>('a[data-target]').forEach(l => {
+  if (!l.classList.contains('nav-link')) l.addEventListener('click', handleNavClick);
+});
 
   window.addEventListener('resize', () => {
     const activeId = activeSectionLabel ? activeSectionLabel.textContent : 'accueil';

@@ -1,0 +1,26 @@
+---
+const categories = [
+  { icon: '📱', title: 'Mobile', tags: ['Flutter', 'Dart'] },
+  { icon: '🌐', title: 'Technologies Web', tags: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Tailwind CSS', 'PHP'] },
+  { icon: '🧩', title: 'Frameworks', tags: ['Next.js', 'Node.js', 'FastAPI', 'Spring Boot', 'Laravel'] },
+  { icon: '⌨️', title: 'Langages de programmation', tags: ['C', 'C#', 'Python', 'Java', 'C++'] },
+  { icon: '🗄️', title: 'Bases de données', tags: ['MySQL', 'PostgreSQL', 'Supabase'] },
+  { icon: '🔧', title: 'Outils', tags: ['Git', 'GitHub', 'Qt Creator', 'XAMPP'] },
+];
+---
+<section id="competences" class="section" data-section>
+  <div class="section-inner">
+    <p class="eyebrow"><span class="dot"></span> ls -la ./competences</p>
+    <h2 class="section-title">Compétences</h2>
+    <div class="skills-grid">
+      {categories.map((cat) => (
+        <div class="skill-card">
+          <div class="skill-head"><span class="skill-icon">{cat.icon}</span><h3>{cat.title}</h3></div>
+          <div class="skill-tags">
+            {cat.tags.map((tag) => <span>{tag}</span>)}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
