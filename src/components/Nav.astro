@@ -10,8 +10,8 @@ const links = [
 ---
 <nav class="headbar" id="headbar" aria-label="Navigation principale">
   {links.map((link, i) => (
-    
-      href={`#${link.id}`}
+    <a
+      href={'#' + link.id}
       class:list={["nav-link", { active: i === 0 }]}
       data-target={link.id}
     >
