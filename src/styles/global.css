@@ -414,3 +414,24 @@ a.contact-row:hover { border-color: var(--accent-green); color: var(--text-prima
 .profile-card { max-width: 760px; }
 .profile-card p { font-size: 15px; line-height: 1.8; color: var(--text-secondary); margin: 0 0 16px; }
 .profile-card strong { color: var(--accent-green); }
+
+/* ===== COMPETENCES v2 ===== */
+.skill-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.filter-btn {
+  font-family: var(--font-display); font-size: 12px; color: var(--text-secondary);
+  background: var(--bg-card-solid); border: 1px solid var(--border-soft); border-radius: 20px;
+  padding: 7px 16px; cursor: pointer; transition: all .18s ease;
+}
+.filter-btn:hover { border-color: var(--accent-blue); color: var(--text-primary); }
+.filter-btn.active { background: linear-gradient(135deg, var(--accent-blue), var(--accent-green)); color: #fff; border-color: transparent; }
+
+.skills-icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 14px; }
+.skill-icon-card {
+  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  background: var(--bg-card-solid); border: 1px solid var(--border-soft); border-radius: 12px;
+  padding: 20px 10px; transition: transform .18s ease, border-color .18s ease;
+}
+.skill-icon-card:hover { transform: translateY(-4px); border-color: var(--accent-green); }
+.skill-icon-card img { width: 38px; height: 38px; object-fit: contain; }
+.skill-icon-card span { font-family: var(--font-display); font-size: 11px; color: var(--text-secondary); text-align: center; }
+.skill-icon-card.hidden-skill { display: none; }

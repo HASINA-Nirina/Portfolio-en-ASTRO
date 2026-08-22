@@ -1,26 +1,74 @@
 ---
-const categories = [
-  { icon: '📱', title: 'Mobile', tags: ['Flutter', 'Dart'] },
-  { icon: '🌐', title: 'Technologies Web', tags: ['HTML5', 'CSS3', 'JavaScript', 'React', 'Tailwind CSS', 'PHP'] },
-  { icon: '🧩', title: 'Frameworks', tags: ['Next.js', 'Node.js', 'FastAPI', 'Spring Boot', 'Laravel'] },
-  { icon: '⌨️', title: 'Langages de programmation', tags: ['C', 'C#', 'Python', 'Java', 'C++'] },
-  { icon: '🗄️', title: 'Bases de données', tags: ['MySQL', 'PostgreSQL', 'Supabase'] },
-  { icon: '🔧', title: 'Outils', tags: ['Git', 'GitHub', 'Qt Creator', 'XAMPP'] },
+const skills = [
+  { name: 'HTML5', icon: 'html5/html5-original', cat: 'langage' },
+  { name: 'CSS3', icon: 'css3/css3-original', cat: 'langage' },
+  { name: 'JavaScript', icon: 'javascript/javascript-original', cat: 'langage' },
+  { name: 'PHP', icon: 'php/php-original', cat: 'langage' },
+  { name: 'Python', icon: 'python/python-original', cat: 'langage' },
+  { name: 'Java', icon: 'java/java-original', cat: 'langage' },
+  { name: 'C', icon: 'c/c-original', cat: 'langage' },
+  { name: 'C#', icon: 'csharp/csharp-original', cat: 'langage' },
+  { name: 'C++', icon: 'cplusplus/cplusplus-original', cat: 'langage' },
+  { name: 'Dart', icon: 'dart/dart-original', cat: 'langage' },
+  { name: 'React', icon: 'react/react-original', cat: 'frontend' },
+  { name: 'Next.js', icon: 'nextjs/nextjs-original', cat: 'frontend' },
+  { name: 'Tailwind CSS', icon: 'tailwindcss/tailwindcss-plain', cat: 'frontend' },
+  { name: 'Flutter', icon: 'flutter/flutter-original', cat: 'frontend' },
+  { name: 'Node.js', icon: 'nodejs/nodejs-original', cat: 'backend' },
+  { name: 'FastAPI', icon: 'fastapi/fastapi-original', cat: 'backend' },
+  { name: 'Spring Boot', icon: 'spring/spring-original', cat: 'backend' },
+  { name: 'Laravel', icon: 'laravel/laravel-original', cat: 'backend' },
+  { name: 'MySQL', icon: 'mysql/mysql-original', cat: 'bdd' },
+  { name: 'PostgreSQL', icon: 'postgresql/postgresql-original', cat: 'bdd' },
+  { name: 'Supabase', icon: 'supabase/supabase-original', cat: 'bdd' },
+  { name: 'Git', icon: 'git/git-original', cat: 'outils' },
+  { name: 'GitHub', icon: 'github/github-original', cat: 'outils' },
+  { name: 'Figma', icon: 'figma/figma-original', cat: 'uiux' },
+];
+
+const filters = [
+  { key: 'all', label: 'Tous' },
+  { key: 'langage', label: 'Langages' },
+  { key: 'frontend', label: 'Front-end' },
+  { key: 'backend', label: 'Back-end' },
+  { key: 'bdd', label: 'Bases de données' },
+  { key: 'outils', label: 'Versionning' },
+  { key: 'uiux', label: 'UI/UX' },
 ];
 ---
 <section id="competences" class="section" data-section>
-  <div class="section-inner">
-    <p class="eyebrow"><span class="dot"></span> ls -la ./competences</p>
-    <h2 class="section-title">Compétences</h2>
-    <div class="skills-grid">
-      {categories.map((cat) => (
-        <div class="skill-card">
-          <div class="skill-head"><span class="skill-icon">{cat.icon}</span><h3>{cat.title}</h3></div>
-          <div class="skill-tags">
-            {cat.tags.map((tag) => <span>{tag}</span>)}
-          </div>
-        </div>
-      ))}
-    </div>
+  <p class="eyebrow"><span class="dot"></span> ls -la ./competences --filter</p>
+  <h2 class="section-title">Compétences</h2>
+
+  <div class="skill-filters" id="skillFilters">
+    {filters.map((f, i) => (
+      <button class:list={["filter-btn", { active: i === 0 }]} data-filter={f.key}>{f.label}</button>
+    ))}
+  </div>
+
+  <div class="skills-icon-grid" id="skillsGrid">
+    {skills.map((s) => (
+      <div class="skill-icon-card" data-cat={s.cat}>
+        <img src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${s.icon}.svg`} alt={s.name} loading="lazy" />
+        <span>{s.name}</span>
+      </div>
+    ))}
   </div>
 </section>
+
+<script>
+  const buttons = document.querySelectorAll<HTMLButtonElement>('#skillFilters .filter-btn');
+  const cards = document.querySelectorAll<HTMLElement>('#skillsGrid .skill-icon-card');
+
+  buttons.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      buttons.forEach((b) => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach((card) => {
+        const match = filter === 'all' || card.dataset.cat === filter;
+        card.classList.toggle('hidden-skill', !match);
+      });
+    });
+  });
+</script>
