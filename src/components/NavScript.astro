@@ -1,0 +1,54 @@
+---
+---
+<script>
+  const navLinks = Array.from(document.querySelectorAll<HTMLAnchorElement>('.nav-link'));
+  const navIndicator = document.getElementById('navIndicator');
+  const headbar = document.getElementById('headbar');
+  const activeSectionLabel = document.getElementById('activeSection');
+  const terminalBody = document.getElementById('terminalBody');
+  const sections = Array.from(document.querySelectorAll<HTMLElement>('[data-section]'));
+
+  function moveIndicator(indicator: HTMLElement | null, activeEl: HTMLElement | undefined, container: HTMLElement | null) {
+    if (!activeEl || !indicator || !container) return;
+    const cRect = container.getBoundingClientRect();
+    const eRect = activeEl.getBoundingClientRect();
+    indicator.style.left = (eRect.left - cRect.left + container.scrollLeft) + 'px';
+    indicator.style.width = eRect.width + 'px';
+  }
+
+  function setActive(id: string) {
+    navLinks.forEach(l => l.classList.toggle('active', l.dataset.target === id));
+    if (activeSectionLabel) activeSectionLabel.textContent = id;
+    const activeNav = navLinks.find(l => l.dataset.target === id);
+    moveIndicator(navIndicator, activeNav, headbar);
+  }
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.intersectionRatio > 0.45) {
+        setActive(entry.target.id);
+      }
+    });
+  }, { root: terminalBody, threshold: [0, 0.45, 0.6] });
+
+  sections.forEach(sec => observer.observe(sec));
+
+  function handleNavClick(this: HTMLAnchorElement, e: Event) {
+    const targetId = this.dataset.target;
+    if (!targetId) return;
+    const targetEl = document.getElementById(targetId);
+    if (!targetEl) return;
+    e.preventDefault();
+    targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setActive(targetId);
+  }
+
+  navLinks.forEach(l => l.addEventListener('click', handleNavClick));
+
+  window.addEventListener('resize', () => {
+    const activeId = activeSectionLabel ? activeSectionLabel.textContent : 'accueil';
+    if (activeId) setActive(activeId);
+  });
+
+  setTimeout(() => setActive('accueil'), 50);
+</script>

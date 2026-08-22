@@ -1,5 +1,7 @@
 ---
 import TitleBar from './TitleBar.astro';
+import Nav from './Nav.astro';
+import NavScript from './NavScript.astro';
 ---
 <div class="desktop-backdrop">
   <div class="glow glow-blue"></div>
@@ -9,10 +11,13 @@ import TitleBar from './TitleBar.astro';
 
 <div class="terminal-window" id="terminalWindow">
   <TitleBar />
+  <Nav />
   <main class="terminal-body" id="terminalBody">
     <slot />
   </main>
 </div>
+
+<NavScript />
 
 <script>
   const maximizeToggle = document.getElementById('maximizeToggle');

@@ -1,0 +1,22 @@
+---
+const links = [
+  { id: 'accueil', label: 'accueil' },
+  { id: 'profil', label: 'profil' },
+  { id: 'competences', label: 'competences' },
+  { id: 'projets', label: 'projets' },
+  { id: 'formation', label: 'formation' },
+  { id: 'contact', label: 'contact' },
+];
+---
+<nav class="headbar" id="headbar" aria-label="Navigation principale">
+  {links.map((link, i) => (
+    
+      href={`#${link.id}`}
+      class:list={["nav-link", { active: i === 0 }]}
+      data-target={link.id}
+    >
+      <span class="nav-cmd">$</span> {link.label}
+    </a>
+  ))}
+  <div class="nav-indicator" id="navIndicator"></div>
+</nav>
