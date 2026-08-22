@@ -1,84 +1,102 @@
 ---
 const projects = [
   {
-    title: "Application Web — Ventes aux Enchères en ligne",
-    date: "Mai 2026",
-    stack: "React (Next.js) · Node.js · PostgreSQL",
-    points: [
-      "Application full-stack de ventes aux enchères avec gestion des offres en temps réel.",
-      "Interface utilisateur intuitive, axée sur l'ergonomie et l'expérience (IHM).",
-    ],
-    dotType: "",
-    links: [],
+    title: "Gestion Formation ECAT Taratra",
+    desc: "Application web full-stack pour la gestion de formation à distance entre étudiants par antennes, avec paiements, livres et forum de discussion.",
+    tools: ["Next.js 15", "FastAPI", "PostgreSQL", "Tailwind CSS"],
+    demo: "#",
+    code: "https://github.com/HASINA-Nirina",
+    accent: "blue",
   },
   {
-    title: "Application Android — Quiz Battle Géolocalisé",
-    date: "Juin 2025",
-    stack: "Flutter · Dart · Supabase · Socket.io",
-    points: [
-      "Quiz multijoueur en temps réel avec géolocalisation entre amis.",
-      "Gestion de catégories de questions, niveaux de difficulté, mode multijoueur.",
-      "Hébergement BDD sur Supabase, communication temps réel.",
-    ],
-    dotType: "",
-    links: [
-      { label: "Dépôt GitHub", url: "https://github.com/Yannick220291/quiz_gamifie" },
-      { label: "Démo en ligne", url: "https://quizgame-site-production.up.railway.app" },
-    ],
+    title: "Quiz Battle Géolocalisé",
+    desc: "Application mobile de quiz multijoueur en temps réel avec catégories de questions par niveau et géolocalisation entre amis.",
+    tools: ["Flutter", "Dart", "Supabase", "Socket.io"],
+    demo: "https://quizgame-site-production.up.railway.app",
+    code: "https://github.com/HASINA-Nirina",
+    accent: "green",
   },
   {
     title: "Cosmétique E-commerce",
-    date: "Projet personnel",
-    stack: "Spring Boot · PostgreSQL · React · Tailwind CSS",
-    points: ["Plateforme e-commerce pour produits cosmétiques : catalogue, panier et gestion des commandes."],
-    dotType: "",
-    links: [{ label: "Dépôt GitHub", url: "https://github.com/Yannick220291/cosmetique" }],
-  },
-  {
-    title: "Stage — Gestion Formation ECAT Taratra",
-    date: "Sept. – Nov. 2025 · 3 mois",
-    stack: "Next.js 15 · FastAPI (Python) · PostgreSQL · Tailwind CSS",
-    points: ["Système de gestion de formations à distance par antennes, avec paiements et forum de discussion."],
-    dotType: "stage",
-    links: [],
-  },
-  {
-    title: "Projet Fin d'Année — Gestion des Notes des Élèves",
-    date: "2022 – 2023",
-    stack: "C++ · Qt Creator · XAMPP",
-    points: ["Application desktop de gestion des notes avec interface graphique Qt."],
-    dotType: "",
-    links: [],
+    desc: "Plateforme e-commerce pour produits cosmétiques : catalogue, panier et gestion des commandes.",
+    tools: ["Spring Boot", "PostgreSQL", "React", "Tailwind CSS"],
+    demo: "#",
+    code: "https://github.com/HASINA-Nirina",
+    accent: "blue",
   },
 ];
 ---
 <section id="projets" class="section" data-section>
-  <div class="section-inner">
-    <p class="eyebrow"><span class="dot"></span> git log --oneline ./projets</p>
-    <h2 class="section-title">Expériences &amp; Projets</h2>
-    <div class="timeline">
-      {projects.map((p) => (
-        <div class="tl-item">
-          <div class:list={["tl-dot", { "tl-dot-stage": p.dotType === "stage" }]}></div>
-          <div class="tl-content">
-            <div class="tl-top">
-              <h3>{p.title}</h3>
-              <span class="tl-date">{p.date}</span>
+  <p class="eyebrow"><span class="dot"></span> git log --oneline ./projets</p>
+  <h2 class="section-title">Mes Projets Récents</h2>
+
+  <div class="billboard" id="billboard">
+    <div class="billboard-screen">
+      {projects.map((p, i) => (
+        <div class:list={["billboard-slide", { active: i === 0 }, `accent-${p.accent}`]} data-index={i}>
+          <div class="billboard-mockup">
+            <div class="mockup-bar"><span></span><span></span><span></span></div>
+            <div class="mockup-body">
+              <span class="mockup-title">{p.title}</span>
             </div>
-            <p class="tl-stack">{p.stack}</p>
-            <ul>
-              {p.points.map((pt) => <li>{pt}</li>)}
-            </ul>
-            {p.links.length > 0 && (
-              <div class="tl-links">
-                {p.links.map((link) => (
-                  <a href={link.url} target="_blank" rel="noopener">{link.label}</a>
-                ))}
-              </div>
-            )}
           </div>
         </div>
       ))}
     </div>
+
+    <div class="billboard-caption">
+      {projects.map((p, i) => (
+        <div class:list={["caption-panel", { active: i === 0 }]} data-index={i}>
+          <h3>{p.title}</h3>
+          <p>{p.desc}</p>
+          <div class="tl-links" style="margin-top:14px;">
+            {p.tools.map((t) => <span class="tag">{t}</span>)}
+          </div>
+          <div class="tl-links" style="margin-top:14px;">
+            <a href={p.demo} target="_blank" rel="noopener">Démo</a>
+            <a href={p.code} target="_blank" rel="noopener">Code</a>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <div class="billboard-dots">
+      {projects.map((_, i) => (
+        <button class:list={["billboard-dot", { active: i === 0 }]} data-index={i} aria-label={`Projet ${i + 1}`}></button>
+      ))}
+    </div>
   </div>
 </section>
+
+<script>
+  const slides = document.querySelectorAll<HTMLElement>('.billboard-slide');
+  const captions = document.querySelectorAll<HTMLElement>('.caption-panel');
+  const dots = document.querySelectorAll<HTMLButtonElement>('.billboard-dot');
+  let current = 0;
+  let timer: ReturnType<typeof setInterval>;
+
+  function show(index: number) {
+    slides.forEach((s) => s.classList.toggle('active', Number(s.dataset.index) === index));
+    captions.forEach((c) => c.classList.toggle('active', Number(c.dataset.index) === index));
+    dots.forEach((d) => d.classList.toggle('active', Number(d.dataset.index) === index));
+    current = index;
+  }
+
+  function next() {
+    show((current + 1) % slides.length);
+  }
+
+  function startAutoplay() {
+    timer = setInterval(next, 4000);
+  }
+
+  dots.forEach((dot) => {
+    dot.addEventListener('click', () => {
+      clearInterval(timer);
+      show(Number(dot.dataset.index));
+      startAutoplay();
+    });
+  });
+
+  if (slides.length > 0) startAutoplay();
+</script>
