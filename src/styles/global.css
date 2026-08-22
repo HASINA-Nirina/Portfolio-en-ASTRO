@@ -188,14 +188,19 @@ a { text-decoration: none; color: inherit; }
   z-index: 0;
 }
 
-/* ===== SECTIONS (temporaire, sera enrichi à l'étape 6) ===== */
+/* ===== SECTIONS ===== */
 .section {
   position: relative;
   min-height: 100%;
   padding: 56px 2cm 72px;
   border-bottom: 1px dashed var(--border-soft);
   overflow: hidden;
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity .6s ease, transform .6s ease;
 }
+.section.in-view { opacity: 1; transform: translateY(0); }
+.section:first-of-type { opacity: 1; transform: none; } /* Accueil visible immédiatement */
 .section::before {
   content: '';
   position: absolute; inset: -60px;

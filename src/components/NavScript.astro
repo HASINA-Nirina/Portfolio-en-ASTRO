@@ -23,13 +23,24 @@
     moveIndicator(navIndicator, activeNav, headbar);
   }
 
+  // const observer = new IntersectionObserver((entries) => {
+  //   entries.forEach(entry => {
+  //     if (entry.intersectionRatio > 0.45) {
+  //       setActive(entry.target.id);
+  //     }
+  //   });
+  // }, { root: terminalBody, threshold: [0, 0.45, 0.6] });
+
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.intersectionRatio > 0.45) {
-        setActive(entry.target.id);
-      }
-    });
-  }, { root: terminalBody, threshold: [0, 0.45, 0.6] });
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+    }
+    if (entry.intersectionRatio > 0.45) {
+      setActive(entry.target.id);
+    }
+  });
+}, { root: terminalBody, threshold: [0, 0.45, 0.6] });
 
   sections.forEach(sec => observer.observe(sec));
 
