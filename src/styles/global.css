@@ -6,13 +6,13 @@
 }
 
 :root {
-  --bg-desktop: #05070c;
-  --bg-window: #0b1017;
-  --bg-titlebar: #10161f;
-  --bg-headbar: #0d131b;
-  --bg-body: #0a0f16;
-  --bg-card-solid: #111a24;
-  --bg-tag: #16202c;
+  --bg-desktop: #050b1a;
+  --bg-window: #0a1428;
+  --bg-titlebar: #0e1c36;
+  --bg-headbar: #0c1830;
+  --bg-body: #081226;
+  --bg-card-solid: #101f3d;
+  --bg-tag: #142547;
 
   --border-soft: #1e2733;
   --border-strong: #2a3644;
@@ -32,13 +32,13 @@
 }
 
 [data-theme="light"] {
-  --bg-desktop: #dbe3ee;
-  --bg-window: #f6f8fb;
-  --bg-titlebar: #eaeef4;
-  --bg-headbar: #eef1f6;
+  --bg-desktop: linear-gradient(180deg, #ffffff 0%, #eef1f6 50%, #e4e9f0 100%);
+  --bg-window: #ffffff;
+  --bg-titlebar: #f7f8fa;
+  --bg-headbar: #f4f6f9;
   --bg-body: #ffffff;
   --bg-card-solid: #ffffff;
-  --bg-tag: #eef2f7;
+  --bg-tag: #f1f3f7;
 
   --border-soft: #dde3ec;
   --border-strong: #c7d0dc;
@@ -67,11 +67,11 @@ a { text-decoration: none; color: inherit; }
 /* ===== BACKDROP ===== */
 .desktop-backdrop {
   position: fixed; inset: 0; z-index: 0;
-  background: radial-gradient(ellipse at 20% 0%, #0d1730 0%, var(--bg-desktop) 55%);
+  background: radial-gradient(ellipse at 20% 0%, #132347 0%, var(--bg-desktop) 55%);
   overflow: hidden;
 }
 [data-theme="light"] .desktop-backdrop {
-  background: radial-gradient(ellipse at 20% 0%, #eaf0fb 0%, var(--bg-desktop) 60%);
+  background: var(--bg-desktop);
 }
 .glow { position: absolute; border-radius: 50%; filter: blur(90px); opacity: .35; }
 .glow-blue { width: 46vw; height: 46vw; background: var(--accent-blue); top: -12%; left: -8%; }
