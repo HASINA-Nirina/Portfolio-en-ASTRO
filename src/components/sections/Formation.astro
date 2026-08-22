@@ -1,25 +1,68 @@
 ---
+import { Image } from 'astro:assets';
+import eniPhoto from '../../assets/formations/eni.png';
+import certPhoto from '../../assets/certificates/ethical-hacking.png';
 ---
 <section id="formation" class="section" data-section>
-  <div class="section-inner">
-    <p class="eyebrow"><span class="dot"></span> cat formation.json</p>
-    <h2 class="section-title">Formations &amp; Diplômes</h2>
-    <div class="edu-list">
-      <div class="edu-card">
-        <div class="edu-year">2022 – 2026</div>
-        <div class="edu-body">
-          <h3>Licence et Master Professionnelle — Informatique Générale</h3>
-          <p>École Nationale d'Informatique (ENI) — Fianarantsoa</p>
-          <span class="edu-badge">4ᵉ année en cours (M1)</span>
-        </div>
+  <p class="eyebrow"><span class="dot"></span> cat formation.json</p>
+  <h2 class="section-title">Formations &amp; Certifications</h2>
+
+  <div class="edu-grid">
+    <div class="edu-card-v2">
+      <Image src={eniPhoto} alt="École Nationale d'Informatique Fianarantsoa" width={400} height={240} class="edu-img" />
+      <div class="edu-card-body">
+        <span class="edu-year">2022 – 2026</span>
+        <h3>Licence et Master — Informatique Générale</h3>
+        <p>École Nationale d'Informatique (ENI) — Fianarantsoa</p>
+        <span class="edu-badge">4ᵉ année en cours (M1)</span>
       </div>
-      <div class="edu-card">
-        <div class="edu-year">2021 – 2022</div>
-        <div class="edu-body">
-          <h3>Baccalauréat</h3>
-          <p>Lycée Saint Louis de Gonzague — Mahasoabe, Fianarantsoa</p>
-        </div>
+    </div>
+
+    <div class="edu-card-v2">
+      <div class="edu-img edu-img-placeholder">🎓</div>
+      <div class="edu-card-body">
+        <span class="edu-year">2021 – 2022</span>
+        <h3>Baccalauréat</h3>
+        <p>Lycée Saint Louis de Gonzague — Mahasoabe, Fianarantsoa</p>
+      </div>
+    </div>
+
+    <div class="edu-card-v2">
+      <button class="cert-trigger" data-lightbox-src={certPhoto.src} aria-label="Agrandir le certificat">
+        <Image src={certPhoto} alt="Certificat de formation Cybersécurité / Ethical Hacking" width={400} height={240} class="edu-img cert-img" />
+        <span class="cert-zoom-hint">🔍 Cliquer pour agrandir</span>
+      </button>
+      <div class="edu-card-body">
+        <span class="edu-year">Certification</span>
+        <h3>Cybersécurité — Ethical Hacking</h3>
+        <p>Formation certifiante en tests d'intrusion et sécurité informatique</p>
       </div>
     </div>
   </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox-overlay" id="lightboxOverlay">
+    <img src="" alt="Certificat agrandi" id="lightboxImg" />
+  </div>
 </section>
+
+<script>
+  const triggers = document.querySelectorAll<HTMLElement>('.cert-trigger');
+  const overlay = document.getElementById('lightboxOverlay');
+  const lightboxImg = document.getElementById('lightboxImg') as HTMLImageElement;
+
+  triggers.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const src = btn.dataset.lightboxSrc;
+      if (src && lightboxImg && overlay) {
+        lightboxImg.src = src;
+        overlay.classList.add('open');
+      }
+    });
+  });
+
+  overlay?.addEventListener('click', () => overlay.classList.remove('open'));
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') overlay?.classList.remove('open');
+  });
+</script>
