@@ -9,7 +9,7 @@ const links = [
 ---
 <nav class="mobile-dock" id="mobileDock" aria-label="Navigation mobile">
   {links.map((link, i) => (
-    
+    <a
       href={'#' + link.id}
       class:list={["dock-link", { active: i === 0 }]}
       data-target={link.id}
