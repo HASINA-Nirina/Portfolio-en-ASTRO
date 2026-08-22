@@ -59,11 +59,9 @@ html, body {
   background: var(--bg-desktop);
   font-family: var(--font-body);
   color: var(--text-primary);
-}
-
-html, body {
   overflow: hidden;
 }
+
 a { text-decoration: none; color: inherit; }
 
 /* ===== BACKDROP ===== */
