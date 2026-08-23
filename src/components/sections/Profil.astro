@@ -1,18 +1,27 @@
 ---
+import { Image } from 'astro:assets';
+import profilePhoto from '../../assets/propos-image.png';
 ---
 <section id="profil" class="section" data-section>
   <div class="profil-wrap">
     <p class="eyebrow"><span class="dot"></span> cat profil.md</p>
     <h2 class="section-title">À propos</h2>
-    <div class="profile-card">
-      <div class="profile-text-col">
-        <p>Je suis <strong>HASINIRINA Jean de Dieu</strong>, étudiant en première année de Master en Informatique Générale à l'École Nationale d'Informatique (ENI) de Fianarantsoa. Passionné par le développement web et le développement d'applications mobiles, j'utilise des technologies modernes comme <strong>React</strong>, <strong>Next.js</strong>, <strong>Tailwind CSS</strong> et le framework <strong>Flutter</strong> (mobile) pour créer des applications performantes et intuitives.</p>
-        <p>Je continue d'apprendre <strong>Git</strong> et <strong>GitHub</strong> pour la gestion de version et le travail collaboratif. Compétent en bureautique (Word, PowerPoint, Excel), je communique couramment en français et je continue aussi de perfectionner mon anglais. Curieux et créatif, je m'inspire de mes loisirs tels que les mangas, les animes et la musique.</p>
+
+    <div class="profil-layout">
+      <div class="profile-card">
+        <div class="profile-text-col">
+          <p>Je suis <strong>HASINIRINA Jean de Dieu</strong>, étudiant en première année de Master en Informatique Générale à l'École Nationale d'Informatique (ENI) de Fianarantsoa. Passionné par le développement web et le développement d'applications mobiles, j'utilise des technologies modernes comme <strong>React</strong>, <strong>Next.js</strong>, <strong>Tailwind CSS</strong> et le framework <strong>Flutter</strong> (mobile) pour créer des applications performantes et intuitives.</p>
+          <p>Je continue d'apprendre <strong>Git</strong> et <strong>GitHub</strong> pour la gestion de version et le travail collaboratif. Compétent en bureautique (Word, PowerPoint, Excel), je communique couramment en français et je continue aussi de perfectionner mon anglais. Curieux et créatif, je m'inspire de mes loisirs tels que les mangas, les animes et la musique.</p>
+        </div>
+        <blockquote class="profile-quote">
+          <span class="quote-mark">&gt;</span> « Il n'y a qu'une façon d'échouer, c'est d'abandonner avant d'avoir réussi. »
+          — Georges Clémenceau
+        </blockquote>
       </div>
-      <blockquote class="profile-quote">
-        <span class="quote-mark">&gt;</span> « Il n'y a qu'une façon d'échouer, c'est d'abandonner avant d'avoir réussi. »
-        — Georges Clémenceau
-      </blockquote>
+
+      <div class="profil-image-wrap">
+        <Image src={profilePhoto} alt="Hasinirina Jean de Dieu" width={360} height={480} class="profil-image" />
+      </div>
     </div>
   </div>
 </section>
