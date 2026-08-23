@@ -12,7 +12,7 @@ const skills = [
   { name: 'Dart', icon: 'dart/dart-original', cat: 'langage' },
   { name: 'React', icon: 'react/react-original', cat: 'frontend' },
   { name: 'Next.js', icon: 'nextjs/nextjs-original', cat: 'frontend' },
-  { name: 'Tailwind CSS', icon: 'tailwindcss/tailwindcss-plain', cat: 'frontend' },
+  { name: 'Tailwind CSS', icon: null, iconUrl: 'https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg', cat: 'frontend' },
   { name: 'Flutter', icon: 'flutter/flutter-original', cat: 'frontend' },
   { name: 'Node.js', icon: 'nodejs/nodejs-original', cat: 'backend' },
   { name: 'FastAPI', icon: 'fastapi/fastapi-original', cat: 'backend' },
@@ -49,7 +49,7 @@ const filters = [
   <div class="skills-icon-grid" id="skillsGrid">
     {skills.map((s) => (
       <div class="skill-icon-card" data-cat={s.cat}>
-        <img src={`https://cdn.jsdelivr.net/gh/devicons/devicon/icons/${s.icon}.svg`} alt={s.name} loading="lazy" />
+        <img src={s.iconUrl ?? `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${s.icon}.svg`} alt={s.name} loading="lazy" />
         <span>{s.name}</span>
       </div>
     ))}
