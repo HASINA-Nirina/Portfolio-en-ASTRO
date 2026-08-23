@@ -1,102 +1,64 @@
 ---
+// Remplace ces exemples par tes vrais projets.
+// images: laisse [] pour l'instant (mockup automatique), ou mets des chemins
+// comme "/projects/projet1-1.png" une fois tes captures déposées dans public/projects/
 const projects = [
-  {
-    title: "Gestion Formation ECAT Taratra",
-    desc: "Application web full-stack pour la gestion de formation à distance entre étudiants par antennes, avec paiements, livres et forum de discussion.",
-    tools: ["Next.js 15", "FastAPI", "PostgreSQL", "Tailwind CSS"],
-    demo: "#",
-    code: "https://github.com/HASINA-Nirina",
-    accent: "blue",
-  },
-  {
-    title: "Quiz Battle Géolocalisé",
-    desc: "Application mobile de quiz multijoueur en temps réel avec catégories de questions par niveau et géolocalisation entre amis.",
-    tools: ["Flutter", "Dart", "Supabase", "Socket.io"],
-    demo: "https://quizgame-site-production.up.railway.app",
-    code: "https://github.com/HASINA-Nirina",
-    accent: "green",
-  },
-  {
-    title: "Cosmétique E-commerce",
-    desc: "Plateforme e-commerce pour produits cosmétiques : catalogue, panier et gestion des commandes.",
-    tools: ["Spring Boot", "PostgreSQL", "React", "Tailwind CSS"],
-    demo: "#",
-    code: "https://github.com/HASINA-Nirina",
-    accent: "blue",
-  },
+  { name: "Projet 1", tools: ["React"], images: [], demo: "#", code: "https://github.com/HASINA-Nirina" },
+  { name: "Projet 2", tools: ["Flutter"], images: [], demo: "#", code: "https://github.com/HASINA-Nirina" },
+  { name: "Projet 3", tools: ["Next.js"], images: [], demo: "#", code: "https://github.com/HASINA-Nirina" },
+  { name: "Projet 4", tools: ["Node.js"], images: [], demo: "#", code: "https://github.com/HASINA-Nirina" },
+  { name: "Projet 5", tools: ["Spring Boot"], images: [], demo: "#", code: "https://github.com/HASINA-Nirina" },
+  { name: "Projet 6", tools: ["PostgreSQL"], images: [], demo: "#", code: "https://github.com/HASINA-Nirina" },
 ];
 ---
 <section id="projets" class="section" data-section>
-  <p class="eyebrow"><span class="dot"></span> git log --oneline ./projets</p>
+  <p class="eyebrow"><span class="dot"></span> ls -la ./projets</p>
   <h2 class="section-title">Mes Projets Récents</h2>
 
-  <div class="billboard" id="billboard">
-    <div class="billboard-screen">
-      {projects.map((p, i) => (
-        <div class:list={["billboard-slide", { active: i === 0 }, `accent-${p.accent}`]} data-index={i}>
-          <div class="billboard-mockup">
-            <div class="mockup-bar"><span></span><span></span><span></span></div>
-            <div class="mockup-body">
-              <span class="mockup-title">{p.title}</span>
-            </div>
-          </div>
+  <div class="projects-grid">
+    {projects.map((p, i) => (
+      <div class="project-window" data-images={JSON.stringify(p.images)}>
+        <div class="project-titlebar">
+          <div class="project-lights"><span></span><span></span><span></span></div>
+          <span class="project-path">~/projet-{i + 1}</span>
         </div>
-      ))}
-    </div>
 
-    <div class="billboard-caption">
-      {projects.map((p, i) => (
-        <div class:list={["caption-panel", { active: i === 0 }]} data-index={i}>
-          <h3>{p.title}</h3>
-          <p>{p.desc}</p>
-          <div class="tl-links" style="margin-top:14px;">
+        <div class="project-screen">
+          {p.images.length > 0 ? (
+            p.images.map((src, idx) => (
+              <img src={src} alt={p.name} class:list={["project-slide", { active: idx === 0 }]} />
+            ))
+          ) : (
+            <div class="project-slide active project-mockup">
+              <span>{p.name}</span>
+            </div>
+          )}
+        </div>
+
+        <div class="project-footer">
+          <h3>{p.name}</h3>
+          <div class="project-tools">
             {p.tools.map((t) => <span class="tag">{t}</span>)}
           </div>
-          <div class="tl-links" style="margin-top:14px;">
+          <div class="tl-links">
             <a href={p.demo} target="_blank" rel="noopener">Démo</a>
             <a href={p.code} target="_blank" rel="noopener">Code</a>
           </div>
         </div>
-      ))}
-    </div>
-
-    <div class="billboard-dots">
-      {projects.map((_, i) => (
-        <button class:list={["billboard-dot", { active: i === 0 }]} data-index={i} aria-label={`Projet ${i + 1}`}></button>
-      ))}
-    </div>
+      </div>
+    ))}
   </div>
 </section>
 
 <script>
-  const slides = document.querySelectorAll<HTMLElement>('.billboard-slide');
-  const captions = document.querySelectorAll<HTMLElement>('.caption-panel');
-  const dots = document.querySelectorAll<HTMLButtonElement>('.billboard-dot');
-  let current = 0;
-  let timer: ReturnType<typeof setInterval>;
-
-  function show(index: number) {
-    slides.forEach((s) => s.classList.toggle('active', Number(s.dataset.index) === index));
-    captions.forEach((c) => c.classList.toggle('active', Number(c.dataset.index) === index));
-    dots.forEach((d) => d.classList.toggle('active', Number(d.dataset.index) === index));
-    current = index;
-  }
-
-  function next() {
-    show((current + 1) % slides.length);
-  }
-
-  function startAutoplay() {
-    timer = setInterval(next, 4000);
-  }
-
-  dots.forEach((dot) => {
-    dot.addEventListener('click', () => {
-      clearInterval(timer);
-      show(Number(dot.dataset.index));
-      startAutoplay();
-    });
+  document.querySelectorAll<HTMLElement>('.project-window').forEach((card) => {
+    const slides = card.querySelectorAll<HTMLElement>('.project-slide');
+    if (slides.length <= 1) return;
+    let index = 0;
+    setInterval(() => {
+      slides[index].classList.remove('active');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('active');
+    }, 3000);
   });
-
-  if (slides.length > 0) startAutoplay();
 </script>
