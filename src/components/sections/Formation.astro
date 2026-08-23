@@ -1,48 +1,87 @@
 ---
 import { Image } from 'astro:assets';
-import eniPhoto from '../../assets/formations/eni.jpg';
 import certPhoto from '../../assets/certificates/ethical-hacking.png';
 ---
 <section id="formation" class="section" data-section>
   <p class="eyebrow"><span class="dot"></span> cat formation.json</p>
   <h2 class="section-title">Formations &amp; Certifications</h2>
 
-  <div class="edu-grid">
-    <div class="edu-card-v2">
-      <Image src={eniPhoto} alt="École Nationale d'Informatique Fianarantsoa" width={400} height={240} class="edu-img" />
-      <div class="edu-card-body">
-        <span class="edu-year">2022 – 2026</span>
-        <h3>Licence et Master — Informatique Générale</h3>
-        <p>École Nationale d'Informatique (ENI) — Fianarantsoa</p>
-        <span class="edu-badge">4ᵉ année en cours (M1)</span>
-      </div>
-    </div>
+  <div class="edu-tree">
 
-    <div class="edu-card-v2">
-      <div class="edu-img edu-img-placeholder">🎓</div>
-      <div class="edu-card-body">
+    <div class="tree-node">
+      <div class="tree-dot"></div>
+      <div class="tree-card">
         <span class="edu-year">2021 – 2022</span>
-        <h3>Baccalauréat</h3>
+        <h3>Baccalauréat — Série D</h3>
         <p>Lycée Saint Louis de Gonzague — Mahasoabe, Fianarantsoa</p>
       </div>
     </div>
 
-    <div class="edu-card-v2">
-      <button class="cert-trigger" data-lightbox-src={certPhoto.src} aria-label="Agrandir le certificat">
-        <Image src={certPhoto} alt="Certificat de formation Cybersécurité / Ethical Hacking" width={400} height={240} class="edu-img cert-img" />
-        <span class="cert-zoom-hint">🔍 Cliquer pour agrandir</span>
-      </button>
-      <div class="edu-card-body">
-        <span class="edu-year">Certification</span>
-        <h3>Cybersécurité — Ethical Hacking</h3>
-        <p>Formation certifiante en tests d'intrusion et sécurité informatique</p>
+    <div class="tree-node">
+      <div class="tree-dot"></div>
+      <div class="tree-card">
+        <span class="edu-year">2022 – 2023</span>
+        <h3>Licence 1 — Informatique Générale</h3>
+        <p>École Nationale d'Informatique (ENI) — Fianarantsoa</p>
       </div>
     </div>
+
+    <div class="tree-node">
+      <div class="tree-dot"></div>
+      <div class="tree-card">
+        <span class="edu-year">2023 – 2024</span>
+        <h3>Licence 2 — Informatique Générale</h3>
+        <p>École Nationale d'Informatique (ENI) — Fianarantsoa</p>
+      </div>
+
+      <div class="tree-branch">
+        <div class="tree-branch-connector"></div>
+        <div class="tree-card tree-card-cert">
+          <button class="cert-trigger" data-lightbox-src={certPhoto.src} aria-label="Agrandir le certificat">
+            <Image
+              src={certPhoto}
+              alt="Certificat de formation Cybersécurité / Ethical Hacking"
+              width={400}
+              height={240}
+              class="edu-img cert-img"
+              draggable="false"
+              oncontextmenu="return false"
+            />
+            <span class="cert-zoom-hint">🔍 Cliquer pour agrandir</span>
+          </button>
+          <div class="edu-card-body">
+            <span class="edu-year">Formation de 3 mois</span>
+            <h3>Cybersécurité — Ethical Hacking</h3>
+            <p>Niveau débutant à avancé, réalisée durant la 2ᵉ année (L2)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tree-node">
+      <div class="tree-dot"></div>
+      <div class="tree-card">
+        <span class="edu-year">2024 – 2025</span>
+        <h3>Licence 3 — Informatique Générale</h3>
+        <p>École Nationale d'Informatique (ENI) — Fianarantsoa</p>
+      </div>
+    </div>
+
+    <div class="tree-node tree-node-current">
+      <div class="tree-dot tree-dot-current"></div>
+      <div class="tree-card">
+        <span class="edu-year">2025 – 2026</span>
+        <h3>Master 1 — Informatique Générale</h3>
+        <p>École Nationale d'Informatique (ENI) — Fianarantsoa</p>
+        <span class="edu-badge">En cours</span>
+      </div>
+    </div>
+
   </div>
 
   <!-- Lightbox -->
   <div class="lightbox-overlay" id="lightboxOverlay">
-    <img src="" alt="Certificat agrandi" id="lightboxImg" />
+    <img src="" alt="Certificat agrandi" id="lightboxImg" draggable="false" oncontextmenu="return false" />
   </div>
 </section>
 
@@ -64,5 +103,11 @@ import certPhoto from '../../assets/certificates/ethical-hacking.png';
   overlay?.addEventListener('click', () => overlay.classList.remove('open'));
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') overlay?.classList.remove('open');
+  });
+
+  // Blocage global du clic droit et du glisser-déposer sur les images de la section formation
+  document.querySelectorAll<HTMLImageElement>('#formation img, #lightboxImg').forEach((img) => {
+    img.addEventListener('contextmenu', (e) => e.preventDefault());
+    img.addEventListener('dragstart', (e) => e.preventDefault());
   });
 </script>
