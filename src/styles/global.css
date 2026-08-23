@@ -295,7 +295,7 @@ a { text-decoration: none; color: inherit; }
 }
 
 /* ===== PROFIL ===== */
-.profil-wrap { max-width: 780px; margin: 0 auto; text-align: left; }
+.profil-wrap { max-width: 780px; margin: 0; text-align: left; }
 
 .profile-card {
   background: var(--bg-card-solid);
