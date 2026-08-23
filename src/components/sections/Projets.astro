@@ -1,7 +1,8 @@
 ---
 const projects = [
   {
-    name: "Gestion Formation ECAT Taratra",
+    name: "Formation en Ligne — ECAT Taratra",
+    desc: "Plateforme de formation à distance de l'université ECAT Taratra Fianarantsoa : achat de livres et vidéos de cours, paiement via Mobile Money, et forum de discussion entre étudiants.",
     tools: ["Next.js 15", "FastAPI", "PostgreSQL", "Tailwind CSS"],
     images: ["/projects/ecat-1.png", "/projects/ecat-2.png", "/projects/ecat-3.png", "/projects/ecat-4.png"],
     demo: "#",
@@ -9,6 +10,7 @@ const projects = [
   },
   {
     name: "Quiz Battle Géolocalisé",
+    desc: "Quiz multijoueur en temps réel avec géolocalisation entre amis, catégories de questions et niveaux de difficulté.",
     tools: ["Flutter", "Dart", "Supabase", "Socket.io"],
     images: ["/projects/quiz-1.png", "/projects/quiz-2.png", "/projects/quiz-3.png"],
     demo: "https://quizgame-site-production.up.railway.app",
@@ -16,6 +18,7 @@ const projects = [
   },
   {
     name: "Cosmétique E-commerce",
+    desc: "Plateforme e-commerce pour produits cosmétiques : catalogue, panier et gestion des commandes.",
     tools: ["Spring Boot", "PostgreSQL", "React", "Tailwind CSS"],
     images: ["/projects/cosmetique-1.png", "/projects/cosmetique-2.png"],
     demo: "#",
@@ -23,6 +26,7 @@ const projects = [
   },
   {
     name: "Ventes aux Enchères en ligne",
+    desc: "Application full-stack de ventes aux enchères avec gestion des offres en temps réel et interface intuitive.",
     tools: ["React (Next.js)", "Node.js", "PostgreSQL"],
     images: ["/projects/encheres-1.png", "/projects/encheres-2.png", "/projects/encheres-3.png"],
     demo: "#",
@@ -30,6 +34,7 @@ const projects = [
   },
   {
     name: "Gestion des Notes des Élèves",
+    desc: "Application desktop de gestion des notes avec interface graphique Qt, pour le suivi scolaire des élèves.",
     tools: ["C++", "Qt Creator", "XAMPP"],
     images: ["/projects/notes-1.png"],
     demo: "#",
@@ -37,6 +42,7 @@ const projects = [
   },
   {
     name: "Prochain projet",
+    desc: "Nouveau projet en préparation — reviens bientôt pour en savoir plus.",
     tools: ["À venir"],
     images: [],
     demo: "#",
@@ -70,6 +76,7 @@ const projects = [
 
         <div class="project-footer">
           <h3>{p.name}</h3>
+          <p class="project-desc">{p.desc}</p>
           <div class="project-tools">
             {p.tools.map((t) => <span class="tag">{t}</span>)}
           </div>
