@@ -17,6 +17,10 @@
     const eRect = activeEl.getBoundingClientRect();
     indicator.style.left = (eRect.left - cRect.left + container.scrollLeft) + 'px';
     indicator.style.width = eRect.width + 'px';
+
+    indicator.classList.remove('pulse');
+    void indicator.offsetWidth; // force le redémarrage de l'animation
+    indicator.classList.add('pulse');
   }
 
   function setActive(id: string) {
