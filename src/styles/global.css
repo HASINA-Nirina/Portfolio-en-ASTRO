@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: 'JetBrains Mono', 'SFMono-Regular', Menlo, monospace;
-  --font-body: 'Inter', -apple-system, 'Segoe UI', Arial, sans-serif;
+  --font-display: 'Inter';
+  --font-body: 'Inter';
 }
 
 :root {
@@ -25,7 +25,7 @@
   --accent-blue-dim: #0d5fd6;
   --accent-blue-glow: #1177ff55;
   --accent-btn: #1177ff;
-  --accent-green: #22d47b;
+  --accent-green: #d9fe34;
   --accent-green-glow: #22d47b4d;
 
   --light-red: #ff5f56;
@@ -200,22 +200,28 @@ a { text-decoration: none; color: inherit; }
 .section:last-of-type { border-bottom: none; }
 .section::before {
   content: '';
-  position: absolute; inset: -60px;
+  position: absolute; inset: -30px;
   z-index: 0;
-  filter: blur(60px);
-  opacity: .3;
+  background-size: cover;
+  background-position: center;
+  filter: blur(7px);
+  opacity: .15;
   pointer-events: none;
 }
 [data-theme="light"] .section::before { opacity: .15; }
+.section::after {
+  content: '';
+  position: absolute; inset: 0;
+  z-index: 0;
+  background: linear-gradient(180deg, var(--bg-body) 0%, transparent 20%, transparent 80%, var(--bg-body) 100%);
+  pointer-events: none;
+}
 .section > * { position: relative; z-index: 1; }
 
-#accueil::before { background: radial-gradient(circle at 15% 20%, var(--accent-blue) 0%, transparent 45%), radial-gradient(circle at 85% 80%, var(--accent-blue-dim) 0%, transparent 50%); }
-#profil::before { background: conic-gradient(from 120deg at 50% 50%, var(--accent-blue-glow), transparent 30%, var(--accent-blue-dim) 60%, transparent); }
-#competences::before { background: radial-gradient(circle at 75% 25%, var(--accent-blue-dim) 0%, transparent 45%), radial-gradient(circle at 15% 85%, var(--accent-blue) 0%, transparent 50%); }
-#projets::before { background: radial-gradient(circle at 25% 75%, var(--accent-blue) 0%, transparent 45%), radial-gradient(circle at 90% 15%, var(--accent-blue-dim) 0%, transparent 45%); }
-#formation::before { background: radial-gradient(circle at 50% 40%, var(--accent-blue-dim) 0%, transparent 55%); }
-#contact::before { background: radial-gradient(circle at 20% 30%, var(--accent-blue) 0%, transparent 45%), radial-gradient(circle at 80% 75%, var(--accent-blue-dim) 0%, transparent 45%); }
-
+#profil::before { background-image: url('/backgrounds/walpaper.jpeg'); }
+#projets::before { background-image: url('/backgrounds/walpaper.jpeg'); }
+#formation::before { background-image: url('/backgrounds/walpaper3.jpeg'); }
+#contact::before { background-image: url('/backgrounds/walpaper2.jpeg'); }
 .eyebrow {
   font-family: var(--font-display); font-size: 12px; color: var(--accent-green);
   display: flex; align-items: center; gap: 8px; margin: 0 0 18px;
@@ -252,7 +258,7 @@ a { text-decoration: none; color: inherit; }
 .hero-grid {
   display: grid;
   grid-template-columns: 280px 1fr;
-  gap: 130px;
+  gap: 100px;
   align-items: center;
   width: 100%;
   max-width: 1080px;
