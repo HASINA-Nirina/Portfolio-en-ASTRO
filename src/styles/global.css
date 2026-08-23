@@ -129,15 +129,15 @@ a { text-decoration: none; color: inherit; }
 @keyframes blink { 50% { opacity: 0; } }
 
 .theme-toggle {
-  flex-shrink: 0; width: 30px; height: 30px; border-radius: 7px;
-  border: 1px solid var(--border-soft);
-  background: var(--bg-card-solid);
+  flex-shrink: 0; width: 30px; height: 30px;
+  border: none;
+  background: transparent;
   color: var(--text-secondary);
   display: flex; align-items: center; justify-content: center;
   cursor: pointer;
-  transition: border-color .18s ease, color .18s ease;
+  transition: color .18s ease, transform .18s ease;
 }
-.theme-toggle:hover { border-color: var(--accent-blue); color: var(--accent-blue); }
+.theme-toggle:hover { color: var(--accent-blue); transform: scale(1.1); }
 .theme-toggle svg { width: 15px; height: 15px; }
 .theme-toggle .icon-sun { display: none; }
 [data-theme="light"] .theme-toggle .icon-moon { display: none; }
