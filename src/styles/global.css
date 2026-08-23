@@ -304,7 +304,15 @@ a { text-decoration: none; color: inherit; }
   padding: 32px;
 }
 .profile-text-col { display: flex; flex-direction: column; }
-.profile-card p { font-size: 15px; line-height: 1.8; color: var(--text-secondary); margin: 0 0 16px; }
+.profile-card p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: var(--text-secondary);
+  margin: 0 0 16px;
+  text-align: justify;
+  text-justify: inter-word;
+  hyphens: auto;
+}
 .profile-card p:last-child { margin-bottom: 0; }
 .profile-card strong { color: var(--accent-green); }
 
@@ -318,6 +326,7 @@ a { text-decoration: none; color: inherit; }
   font-size: 15px;
   line-height: 1.85;
   color: var(--text-primary);
+  text-align: justify;
 }
 .profile-quote .quote-mark { display: inline-block; margin-right: 6px; color: var(--accent-green); }
 
