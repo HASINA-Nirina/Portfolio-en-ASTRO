@@ -37,7 +37,7 @@ import certPhoto from '../../assets/certificates/ethical-hacking.png';
       <div class="tree-branch">
         <div class="tree-branch-connector"></div>
         <div class="tree-card tree-card-cert">
-          <button class="cert-trigger" data-lightbox-src={certPhoto.src} aria-label="Agrandir le certificat">
+            <button class="cert-trigger" data-lightbox-src={certPhoto.src} aria-label="Agrandir le certificat">
             <Image
               src={certPhoto}
               alt="Certificat de formation Cybersécurité / Ethical Hacking"
@@ -47,6 +47,7 @@ import certPhoto from '../../assets/certificates/ethical-hacking.png';
               draggable="false"
               oncontextmenu="return false"
             />
+            <span class="cert-watermark">Hasinirina</span>
             <span class="cert-zoom-hint">🔍 Cliquer pour agrandir</span>
           </button>
           <div class="edu-card-body">
@@ -105,9 +106,12 @@ import certPhoto from '../../assets/certificates/ethical-hacking.png';
     if (e.key === 'Escape') overlay?.classList.remove('open');
   });
 
-  // Blocage global du clic droit et du glisser-déposer sur les images de la section formation
+    // Blocage du clic droit et du glisser-déposer sur les images de la section formation
   document.querySelectorAll<HTMLImageElement>('#formation img, #lightboxImg').forEach((img) => {
     img.addEventListener('contextmenu', (e) => e.preventDefault());
     img.addEventListener('dragstart', (e) => e.preventDefault());
   });
+
+  // Empêche la sélection de texte/image dans la lightbox pendant qu'elle est ouverte
+  overlay?.addEventListener('selectstart', (e) => e.preventDefault());
 </script>
