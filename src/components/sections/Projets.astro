@@ -2,51 +2,39 @@
 const projects = [
   {
     name: "Formation en Ligne — ECAT Taratra",
-    desc: "Plateforme de formation à distance de l'université ECAT Taratra Fianarantsoa : achat de livres et vidéos de cours, paiement via Mobile Money, et forum de discussion entre étudiants.",
+    desc: "Plateforme de formation à distance pour l'université ECAT Taratra Fianarantsoa, permettant l'achat de livres et vidéos de cours, le paiement via Mobile Money, et l'échange entre étudiants via un forum de discussion intégré.",
     tools: ["Next.js 15", "FastAPI", "PostgreSQL", "Tailwind CSS"],
     images: ["/projects/ecat-1.png", "/projects/ecat-2.png", "/projects/ecat-3.png", "/projects/ecat-4.png"],
-    demo: "#",
-    code: "https://github.com/HASINA-Nirina",
   },
   {
     name: "Quiz Battle Géolocalisé",
-    desc: "Quiz multijoueur en temps réel avec géolocalisation entre amis, catégories de questions et niveaux de difficulté.",
+    desc: "Application mobile de quiz multijoueur en temps réel, avec géolocalisation entre amis, catégories de questions variées et plusieurs niveaux de difficulté.",
     tools: ["Flutter", "Dart", "Supabase", "Socket.io"],
-    images: ["/projects/quiz-1.png", "/projects/quiz-2.png", "/projects/quiz-3.png"],
-    demo: "https://quizgame-site-production.up.railway.app",
-    code: "https://github.com/HASINA-Nirina",
+    images: ["/projects/quiz-1.png", "/projects/quiz-2.png"],
   },
   {
-    name: "Cosmétique E-commerce",
-    desc: "Plateforme e-commerce pour produits cosmétiques : catalogue, panier et gestion des commandes.",
-    tools: ["Spring Boot", "PostgreSQL", "React", "Tailwind CSS"],
-    images: ["/projects/cosmetique-1.png", "/projects/cosmetique-2.png"],
-    demo: "#",
-    code: "https://github.com/HASINA-Nirina",
+    name: "Serveur de Messagerie Sécurisé",
+    desc: "Application desktop implémentant un serveur de messagerie instantanée nécessitant une authentification des utilisateurs. La communication entre le serveur et les clients repose sur des sockets réseau TCP, avec un stockage sécurisé des mots de passe.",
+    tools: ["Python", "Sockets TCP", "Tkinter", "bcrypt"],
+    images: ["/projects/serveur1.png", "/projects/serveur2.png", "/projects/serveur3.png", "/projects/serveur4.png"],
   },
   {
     name: "Ventes aux Enchères en ligne",
-    desc: "Application full-stack de ventes aux enchères avec gestion des offres en temps réel et interface intuitive.",
-    tools: ["React (Next.js)", "Node.js", "PostgreSQL"],
-    images: ["/projects/encheres-1.png", "/projects/encheres-2.png", "/projects/encheres-3.png"],
-    demo: "#",
-    code: "https://github.com/HASINA-Nirina",
+    desc: "Plateforme full-stack de ventes aux enchères en ligne : les utilisateurs publient des articles et placent des offres en temps réel, avec mise à jour instantanée du prix et du compte à rebours jusqu'à la clôture de chaque enchère.",
+    tools: ["React", "Node.js", "MySQL"],
+    images: ["/projects/encheres-1.png", "/projects/encheres-2.png", "/projects/encheres-3.png", "/projects/encheres-4.png", "/projects/encheres-5.png", "/projects/encheres-6.png"],
   },
   {
-    name: "Gestion des Notes des Élèves",
-    desc: "Application desktop de gestion des notes avec interface graphique Qt, pour le suivi scolaire des élèves.",
-    tools: ["C++", "Qt Creator", "XAMPP"],
-    images: ["/projects/notes-1.png"],
-    demo: "#",
-    code: "https://github.com/HASINA-Nirina",
+    name: "Problème du Voyageur de Commerce — Algorithme de Little",
+    desc: "Application web résolvant le problème du voyageur de commerce grâce à l'algorithme de Little (méthode de séparation et évaluation), avec sauvegarde des données directement dans le navigateur via le Local Storage.",
+    tools: ["React", "Tailwind CSS", "Local Storage"],
+    images: ["/projects/pvc-little1.png", "/projects/pvc-little2.png", "/projects/pvc-little3.png", "/projects/pvc-little4.png"],
   },
   {
-    name: "Prochain projet",
-    desc: "Nouveau projet en préparation — reviens bientôt pour en savoir plus.",
-    tools: ["À venir"],
-    images: [],
-    demo: "#",
-    code: "https://github.com/HASINA-Nirina",
+    name: "Astro Strike — Jeu de Tir Spatial",
+    desc: "Jeu d'arcade de tir spatial développé en Python, où le joueur pilote un vaisseau et affronte des vagues d'ennemis dans un décor étoilé, avec gestion des collisions, des tirs et des niveaux de difficulté croissants.",
+    tools: ["Python", "Pygame"],
+    images: ["/projects/rocket-2.png", "/projects/rocket-3.png", "/projects/rocket-4.png"],
   },
 ];
 ---
@@ -79,10 +67,6 @@ const projects = [
           <p class="project-desc">{p.desc}</p>
           <div class="project-tools">
             {p.tools.map((t) => <span class="tag">{t}</span>)}
-          </div>
-          <div class="tl-links">
-            <a href={p.demo} target="_blank" rel="noopener">Démo</a>
-            <a href={p.code} target="_blank" rel="noopener">Code</a>
           </div>
         </div>
       </div>
