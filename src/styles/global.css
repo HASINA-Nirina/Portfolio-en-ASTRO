@@ -156,7 +156,7 @@ a { text-decoration: none; color: inherit; }
 .headbar {
   position: relative;
   display: flex; gap: 4px;
-  padding: 10px 16px;
+  padding: 10px 16px 8px;
   background: var(--bg-headbar);
   border-bottom: 1px solid var(--border-soft);
   flex-shrink: 0;
@@ -176,10 +176,9 @@ a { text-decoration: none; color: inherit; }
 .nav-link:hover { color: var(--text-primary); }
 .nav-link.active { color: var(--text-primary); }
 .nav-indicator {
-  position: absolute; top: 10px; height: 30px;
-  border-radius: 7px;
-  background: linear-gradient(135deg, var(--accent-blue-glow), var(--accent-blue-dim));
-  border: 1px solid var(--border-strong);
+  position: absolute; bottom: 0; height: 2px;
+  border-radius: 2px 2px 0 0;
+  background: linear-gradient(90deg, var(--accent-blue), var(--accent-blue-dim));
   transition: left .38s cubic-bezier(.4,0,.2,1), width .38s cubic-bezier(.4,0,.2,1);
   z-index: 0;
 }
