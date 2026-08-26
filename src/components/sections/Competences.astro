@@ -26,49 +26,38 @@ const skills = [
   { name: 'Figma', icon: 'figma/figma-original', cat: 'uiux' },
 ];
 
-const filters = [
-  { key: 'all', label: 'Tous' },
-  { key: 'langage', label: 'Langages' },
+const categories = [
+  { key: 'langage', label: 'Langages'},
   { key: 'frontend', label: 'Front-end' },
   { key: 'backend', label: 'Back-end' },
-  { key: 'bdd', label: 'Bases de données' },
-  { key: 'outils', label: 'Versionning' },
-  { key: 'uiux', label: 'UI/UX' },
+  { key: 'bdd', label: 'SGBD'},
+  { key: 'outils', label: 'Versionning'},
+  { key: 'uiux', label: 'UI/UX'},
 ];
 ---
 <section id="competences" class="section" data-section>
-  <p class="eyebrow"><span class="dot"></span> ls -la ./competences --filter</p>
+  <p class="eyebrow"><span class="dot"></span> ls -la ./competences --grouped</p>
   <h2 class="section-title">Compétences</h2>
 
-  <div class="skill-filters" id="skillFilters">
-    {filters.map((f, i) => (
-      <button class:list={["filter-btn", { active: i === 0 }]} data-filter={f.key}>{f.label}</button>
-    ))}
-  </div>
-
-  <div class="skills-icon-grid" id="skillsGrid">
-    {skills.map((s) => (
-      <div class="skill-icon-card" data-cat={s.cat}>
-        <img src={s.iconUrl ?? `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${s.icon}.svg`} alt={s.name} loading="lazy" />
-        <span>{s.name}</span>
-      </div>
-    ))}
+  <div class="skills-groups">
+    {categories.map((cat) => {
+      const items = skills.filter((s) => s.cat === cat.key);
+      if (items.length === 0) return null;
+      return (
+        <div class="skills-group">
+          <div class="skills-group-title">
+            <h3>&nbsp;{cat.label}</h3>
+          </div>
+          <div class="skills-icon-grid">
+            {items.map((s) => (
+              <div class="skill-icon-card">
+                <img src={s.iconUrl ?? `https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${s.icon}.svg`} alt={s.name} loading="lazy" />
+                <span>{s.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    })}
   </div>
 </section>
-
-<script>
-  const buttons = document.querySelectorAll<HTMLButtonElement>('#skillFilters .filter-btn');
-  const cards = document.querySelectorAll<HTMLElement>('#skillsGrid .skill-icon-card');
-
-  buttons.forEach((btn) => {
-    btn.addEventListener('click', () => {
-      buttons.forEach((b) => b.classList.remove('active'));
-      btn.classList.add('active');
-      const filter = btn.dataset.filter;
-      cards.forEach((card) => {
-        const match = filter === 'all' || card.dataset.cat === filter;
-        card.classList.toggle('hidden-skill', !match);
-      });
-    });
-  });
-</script>

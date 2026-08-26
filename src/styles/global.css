@@ -387,26 +387,47 @@ a { text-decoration: none; color: inherit; }
   .profile-card { padding: 26px; }
 }
 
-/* ===== COMPETENCES ===== */
-.skill-filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-.filter-btn {
-  font-family: var(--font-display); font-size: 12px; color: var(--text-secondary);
-  background: var(--bg-card-solid); border: 1px solid var(--border-soft); border-radius: 20px;
-  padding: 7px 16px; cursor: pointer; transition: all .18s ease;
-}
-.filter-btn:hover { border-color: var(--accent-blue); color: var(--text-primary); }
-.filter-btn.active { background: linear-gradient(135deg, var(--accent-blue), var(--accent-blue-dim)); color: #fff; border-color: transparent; }
+/* ===== COMPETENCES — GROUPÉES ===== */
+.skills-groups { display: flex; flex-direction: column; gap: 32px; }
 
-.skills-icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 14px; }
+.skills-group-title {
+  display: flex; align-items: center; gap: 10px;
+  margin-bottom: 14px;
+}
+.skills-group-icon { font-size: 18px; }
+.skills-group-title h3 {
+  font-family: var(--font-display); font-size: 14px; font-weight: 700;
+  color: var(--text-primary); margin: 0;
+  text-transform: uppercase; letter-spacing: .5px;
+}
+.skills-group-title::after {
+  content: '';
+  background: var(--border-soft);
+  margin-left: 6px;
+}
+
+.skills-icon-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 12px; }
 .skill-icon-card {
-  display: flex; flex-direction: column; align-items: center; gap: 10px;
+  display: flex; flex-direction: column; align-items: center; gap: 9px;
   background: var(--bg-card-solid); border: 1px solid var(--border-soft); border-radius: 12px;
-  padding: 20px 10px; transition: transform .18s ease, border-color .18s ease;
+  padding: 16px 8px; transition: transform .18s ease, border-color .18s ease;
 }
 .skill-icon-card:hover { transform: translateY(-4px); border-color: var(--accent-blue); }
-.skill-icon-card img { width: 38px; height: 38px; object-fit: contain; }
-.skill-icon-card span { font-family: var(--font-display); font-size: 11px; color: var(--text-secondary); text-align: center; }
-.skill-icon-card.hidden-skill { display: none; }
+.skill-icon-card img {
+  width: 34px; height: 34px; object-fit: contain;
+  
+}
+.skill-icon-card span { font-family: var(--font-display); font-size: 10.5px; color: var(--text-secondary); text-align: center; }
+
+@media (max-width: 820px) {
+  .skills-icon-grid { grid-template-columns: repeat(3, 1fr); gap: 10px; }
+  .skill-icon-card { padding: 12px 6px; }
+  .skill-icon-card img { width: 30px; height: 30px; }
+  .skill-icon-card span { font-size: 9.5px; }
+}
+@media (max-width: 480px) {
+  .skills-icon-grid { grid-template-columns: repeat(2, 1fr); }
+}
 
 /* ===== PROJETS — GRILLE DE FENÊTRES ===== */
 .projects-grid {
