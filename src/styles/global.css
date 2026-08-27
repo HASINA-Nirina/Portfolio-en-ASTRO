@@ -226,6 +226,7 @@ a { text-decoration: none; color: inherit; }
 }
 .section > * { position: relative; z-index: 1; }
 
+#accueil::before { background-image: url('/backgrounds/walpaper7.jpg'); }
 #profil::before { background-image: url('/backgrounds/walpaper.jpeg'); }
 #competences::before { background-image: url('/backgrounds/walpaper4.jpg'); }
 #projets::before { background-image: url('/backgrounds/walpaper.jpeg'); }
