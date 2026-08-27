@@ -229,8 +229,8 @@ a { text-decoration: none; color: inherit; }
 #profil::before { background-image: url('/backgrounds/walpaper.jpeg'); }
 #competences::before { background-image: url('/backgrounds/walpaper4.jpg'); }
 #projets::before { background-image: url('/backgrounds/walpaper.jpeg'); }
-#formation::before { background-image: url('/backgrounds/walpaper3.jpeg'); }
-#contact::before { background-image: url('/backgrounds/walpaper2.jpeg'); }
+#formation::before { background-image: url('/backgrounds/walpaper3.jpg'); }
+#contact::before { background-image: url('/backgrounds/walpaper5.png'); }
 .eyebrow {
   font-family: var(--font-display); font-size: 12px; color: var(--accent-green);
   display: flex; align-items: center; gap: 8px; margin: 0 0 18px;
@@ -448,8 +448,7 @@ a { text-decoration: none; color: inherit; }
 @media (max-width: 820px) {
   .project-window { cursor: pointer; }
 }
-.project-window:hover { transform: translateY(-4px); border-color: var(--accent-blue); }
-.project-window:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
+.project-window:hover { transform: translateY(-4px); }
 
 .project-titlebar {
   display: flex; align-items: center; gap: 10px;
