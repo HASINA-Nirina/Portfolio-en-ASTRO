@@ -502,7 +502,7 @@ a { text-decoration: none; color: inherit; }
 .project-modal-overlay.open { opacity: 1; pointer-events: auto; }
 
 .project-modal-window {
-  width: min(1200px, 95vw);
+  width: min(1200px, 105vw);
   max-height: 94vh;
 }
 .lightbox-light#projectModalClose { cursor: pointer; }
@@ -517,8 +517,8 @@ a { text-decoration: none; color: inherit; }
   position: relative;
   display: flex; align-items: center; justify-content: center;
   background: var(--bg-titlebar);
-  padding: 28px;
-  min-height: 300px;
+  padding: 7cm 28px;
+  min-height: 50px;
 }
 .project-modal-screen img {
   max-width: 100%;
@@ -540,7 +540,7 @@ a { text-decoration: none; color: inherit; }
 .project-modal-nav.prev { left: 16px; }
 .project-modal-nav.next { right: 16px; }
 
-.project-modal-info { padding: 24px 28px; }
+.project-modal-info { padding: 40px 18px 24px;}
 .project-modal-info h3 { font-size: 19px; margin: 0 0 14px; color: var(--text-primary); }
 .project-modal-info p {
   font-size: 14px; line-height: 1.85; color: var(--text-secondary); margin: 0 0 18px;
