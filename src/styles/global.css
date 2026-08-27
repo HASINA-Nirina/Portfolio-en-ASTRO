@@ -502,19 +502,19 @@ a { text-decoration: none; color: inherit; }
 .project-modal-overlay.open { opacity: 1; pointer-events: auto; }
 
 .project-modal-window {
-  width: min(920px, 100%);
+  width: min(1180px, 96vw);
   max-height: 88vh;
 }
 .lightbox-light#projectModalClose { cursor: pointer; }
 
 .project-modal-body {
   display: grid;
-  grid-template-columns: 1.3fr 1fr;
+  grid-template-columns: 1.8fr 1fr;
   overflow-y: auto;
 }
 .project-modal-screen {
   position: relative;
-  aspect-ratio: 16/11;
+  aspect-ratio: 16/13;
   background: var(--bg-titlebar);
   overflow: hidden;
 }
