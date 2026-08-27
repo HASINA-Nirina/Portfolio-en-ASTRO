@@ -162,12 +162,16 @@ const projects = [
     overlay.classList.remove('open');
   }
 
+  const isMobileView = () => window.matchMedia('(max-width: 820px)').matches;
+
   document.querySelectorAll('.project-window').forEach((card) => {
     card.addEventListener('click', () => {
+      if (!isMobileView()) return;
       const idx = parseInt(card.dataset.projectIndex, 10);
       openModal(idx);
     });
     card.addEventListener('keydown', (e) => {
+      if (!isMobileView()) return;
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
         const idx = parseInt(card.dataset.projectIndex, 10);
