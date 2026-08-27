@@ -89,7 +89,6 @@ const projects = [
           <img src="" alt="" id="projectModalImg" draggable="false" oncontextmenu="return false" />
           <button class="project-modal-nav next" id="projectModalNext" aria-label="Image suivante">›</button>
         </div>
-        <div class="project-modal-thumbs" id="projectModalThumbs"></div>
         <div class="project-modal-info">
           <h3 id="projectModalTitle"></h3>
           <p id="projectModalDesc"></p>
@@ -121,7 +120,6 @@ const projects = [
   const modalDesc = document.getElementById('projectModalDesc');
   const modalTools = document.getElementById('projectModalTools');
   const modalPath = document.getElementById('projectModalPath');
-  const modalThumbs = document.getElementById('projectModalThumbs');
   const btnPrev = document.getElementById('projectModalPrev');
   const btnNext = document.getElementById('projectModalNext');
   const btnClose = document.getElementById('projectModalClose');
@@ -133,10 +131,7 @@ const projects = [
     if (!currentProject) return;
     const imgs = currentProject.images;
     if (imgs.length === 0) return;
-    modalImg.src = imgs[currentImgIndex];
-    modalThumbs.querySelectorAll('.project-modal-thumb').forEach((t, i) => {
-      t.classList.toggle('active', i === currentImgIndex);
-    });
+        modalImg.src = imgs[currentImgIndex];
   }
 
   function openModal(index) {
@@ -154,20 +149,6 @@ const projects = [
       span.textContent = t;
       modalTools.appendChild(span);
     });
-
-        modalThumbs.innerHTML = '';
-    if (currentProject.images.length > 1) {
-      currentProject.images.forEach((src, i) => {
-        const thumb = document.createElement('button');
-        thumb.className = 'project-modal-thumb';
-        const img = document.createElement('img');
-        img.src = src;
-        img.alt = '';
-        thumb.appendChild(img);
-        thumb.addEventListener('click', () => { currentImgIndex = i; renderModalImage(); });
-        modalThumbs.appendChild(thumb);
-      });
-    }
 
     const hasMultiple = currentProject.images.length > 1;
     btnPrev.style.display = hasMultiple ? 'flex' : 'none';
