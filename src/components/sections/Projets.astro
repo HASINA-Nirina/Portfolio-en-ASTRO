@@ -44,7 +44,7 @@ const projects = [
 
   <div class="projects-grid">
     {projects.map((p, i) => (
-      <div class="project-window">
+      <div class="project-window" data-project-index={i} tabindex="0" role="button" aria-label={`Voir le détail de ${p.name}`}>
         <div class="project-titlebar">
           <div class="project-lights"><span></span><span></span><span></span></div>
           <span class="project-path">~/projet-{i + 1}</span>
@@ -60,6 +60,7 @@ const projects = [
               <span>{p.name}</span>
             </div>
           )}
+          <div class="project-expand-hint">🔍 Cliquer pour agrandir</div>
         </div>
 
         <div class="project-footer">
@@ -72,17 +73,144 @@ const projects = [
       </div>
     ))}
   </div>
+
+  <!-- Modal détail projet -->
+  <div class="project-modal-overlay" id="projectModalOverlay">
+    <div class="lightbox-window project-modal-window">
+      <div class="lightbox-titlebar">
+        <span class="lightbox-light red" id="projectModalClose" role="button" aria-label="Fermer"></span>
+        <span class="lightbox-light yellow"></span>
+        <span class="lightbox-light green"></span>
+        <span class="lightbox-path" id="projectModalPath"></span>
+      </div>
+      <div class="project-modal-body">
+        <div class="project-modal-screen">
+          <button class="project-modal-nav prev" id="projectModalPrev" aria-label="Image précédente">‹</button>
+          <img src="" alt="" id="projectModalImg" draggable="false" oncontextmenu="return false" />
+          <button class="project-modal-nav next" id="projectModalNext" aria-label="Image suivante">›</button>
+          <div class="project-modal-dots" id="projectModalDots"></div>
+        </div>
+        <div class="project-modal-info">
+          <h3 id="projectModalTitle"></h3>
+          <p id="projectModalDesc"></p>
+          <div class="project-tools" id="projectModalTools"></div>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
-<script>
-  document.querySelectorAll<HTMLElement>('.project-window').forEach((card) => {
-    const slides = card.querySelectorAll<HTMLElement>('.project-slide');
-    if (slides.length <= 1) return;
-    let index = 0;
-    setInterval(() => {
-      slides[index].classList.remove('active');
-      index = (index + 1) % slides.length;
-      slides[index].classList.add('active');
-    }, 3000);
+<script define:vars={{ projects }}>
+  // Carrousel automatique de chaque carte (aperçu de la grille)
+  document.querySelectorAll('.project-window').forEach((card) => {
+    const slides = card.querySelectorAll('.project-slide');
+    if (slides.length > 1) {
+      let index = 0;
+      setInterval(() => {
+        slides[index].classList.remove('active');
+        index = (index + 1) % slides.length;
+        slides[index].classList.add('active');
+      }, 3000);
+    }
+  });
+
+  // Modal détail projet
+  const overlay = document.getElementById('projectModalOverlay');
+  const modalImg = document.getElementById('projectModalImg');
+  const modalTitle = document.getElementById('projectModalTitle');
+  const modalDesc = document.getElementById('projectModalDesc');
+  const modalTools = document.getElementById('projectModalTools');
+  const modalPath = document.getElementById('projectModalPath');
+  const modalDots = document.getElementById('projectModalDots');
+  const btnPrev = document.getElementById('projectModalPrev');
+  const btnNext = document.getElementById('projectModalNext');
+  const btnClose = document.getElementById('projectModalClose');
+
+  let currentProject = null;
+  let currentImgIndex = 0;
+
+  function renderModalImage() {
+    if (!currentProject) return;
+    const imgs = currentProject.images;
+    if (imgs.length === 0) return;
+    modalImg.src = imgs[currentImgIndex];
+    modalDots.querySelectorAll('.project-modal-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentImgIndex);
+    });
+  }
+
+  function openModal(index) {
+    currentProject = projects[index];
+    currentImgIndex = 0;
+
+    modalTitle.textContent = currentProject.name;
+    modalDesc.textContent = currentProject.desc;
+    modalPath.textContent = '~/projet-' + (index + 1);
+
+    modalTools.innerHTML = '';
+    currentProject.tools.forEach((t) => {
+      const span = document.createElement('span');
+      span.className = 'tag';
+      span.textContent = t;
+      modalTools.appendChild(span);
+    });
+
+    modalDots.innerHTML = '';
+    if (currentProject.images.length > 1) {
+      currentProject.images.forEach((_, i) => {
+        const dot = document.createElement('button');
+        dot.className = 'project-modal-dot';
+        dot.addEventListener('click', () => { currentImgIndex = i; renderModalImage(); });
+        modalDots.appendChild(dot);
+      });
+    }
+
+    const hasMultiple = currentProject.images.length > 1;
+    btnPrev.style.display = hasMultiple ? 'flex' : 'none';
+    btnNext.style.display = hasMultiple ? 'flex' : 'none';
+
+    renderModalImage();
+    overlay.classList.add('open');
+  }
+
+  function closeModal() {
+    overlay.classList.remove('open');
+  }
+
+  document.querySelectorAll('.project-window').forEach((card) => {
+    card.addEventListener('click', () => {
+      const idx = parseInt(card.dataset.projectIndex, 10);
+      openModal(idx);
+    });
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        const idx = parseInt(card.dataset.projectIndex, 10);
+        openModal(idx);
+      }
+    });
+  });
+
+  btnPrev.addEventListener('click', () => {
+    if (!currentProject) return;
+    currentImgIndex = (currentImgIndex - 1 + currentProject.images.length) % currentProject.images.length;
+    renderModalImage();
+  });
+  btnNext.addEventListener('click', () => {
+    if (!currentProject) return;
+    currentImgIndex = (currentImgIndex + 1) % currentProject.images.length;
+    renderModalImage();
+  });
+
+  btnClose.addEventListener('click', closeModal);
+  overlay.addEventListener('click', (e) => {
+    if (e.target === overlay) closeModal();
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+    if (overlay.classList.contains('open')) {
+      if (e.key === 'ArrowLeft') btnPrev.click();
+      if (e.key === 'ArrowRight') btnNext.click();
+    }
   });
 </script>

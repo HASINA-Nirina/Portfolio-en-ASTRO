@@ -442,9 +442,11 @@ a { text-decoration: none; color: inherit; }
   border: 1px solid var(--border-soft);
   border-radius: 12px;
   overflow: hidden;
+  cursor: pointer;
   transition: transform .2s ease, border-color .2s ease;
 }
 .project-window:hover { transform: translateY(-4px); border-color: var(--accent-blue); }
+.project-window:focus-visible { outline: 2px solid var(--accent-blue); outline-offset: 2px; }
 
 .project-titlebar {
   display: flex; align-items: center; gap: 10px;
@@ -457,6 +459,12 @@ a { text-decoration: none; color: inherit; }
 .project-path { font-family: var(--font-display); font-size: 10.5px; color: var(--text-muted); }
 
 .project-screen { position: relative; aspect-ratio: 16/7; overflow: hidden; background: var(--bg-titlebar); }
+.project-expand-hint {
+  position: absolute; inset: 0; display: flex; align-items: center; justify-content: center;
+  background: rgba(5,7,12,0.6); color: #fff; font-family: var(--font-display); font-size: 12px;
+  opacity: 0; transition: opacity .2s ease; z-index: 2;
+}
+.project-window:hover .project-expand-hint { opacity: 1; }
 .project-slide {
   position: absolute; inset: 0;
   width: 100%; height: 100%;
@@ -481,6 +489,67 @@ a { text-decoration: none; color: inherit; }
 }
 @media (max-width: 640px) {
   .projects-grid { grid-template-columns: 1fr; }
+}
+
+/* ===== MODAL DÉTAIL PROJET ===== */
+.project-modal-overlay {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(5,7,12,0.9);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none; transition: opacity .3s ease;
+  padding: 30px;
+}
+.project-modal-overlay.open { opacity: 1; pointer-events: auto; }
+
+.project-modal-window {
+  width: min(920px, 100%);
+  max-height: 88vh;
+}
+.lightbox-light#projectModalClose { cursor: pointer; }
+
+.project-modal-body {
+  display: grid;
+  grid-template-columns: 1.3fr 1fr;
+  overflow-y: auto;
+}
+.project-modal-screen {
+  position: relative;
+  aspect-ratio: 16/11;
+  background: var(--bg-titlebar);
+  overflow: hidden;
+}
+.project-modal-screen img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.project-modal-nav {
+  position: absolute; top: 50%; transform: translateY(-50%);
+  width: 34px; height: 34px; border-radius: 50%;
+  background: rgba(5,7,12,0.6); color: #fff; border: none;
+  font-size: 20px; cursor: pointer; z-index: 3;
+  display: flex; align-items: center; justify-content: center;
+  transition: background .18s ease;
+}
+.project-modal-nav:hover { background: var(--accent-blue); }
+.project-modal-nav.prev { left: 10px; }
+.project-modal-nav.next { right: 10px; }
+.project-modal-dots {
+  position: absolute; bottom: 12px; left: 0; right: 0;
+  display: flex; justify-content: center; gap: 6px; z-index: 3;
+}
+.project-modal-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: rgba(255,255,255,0.4); border: none; cursor: pointer;
+  transition: all .2s ease;
+}
+.project-modal-dot.active { width: 20px; border-radius: 4px; background: #fff; }
+
+.project-modal-info { padding: 24px; overflow-y: auto; }
+.project-modal-info h3 { font-size: 18px; margin: 0 0 12px; color: var(--text-primary); }
+.project-modal-info p { font-size: 13.5px; line-height: 1.75; color: var(--text-secondary); margin: 0 0 16px; }
+
+@media (max-width: 720px) {
+  .project-modal-body { grid-template-columns: 1fr; }
+  .project-modal-screen { aspect-ratio: 16/10; }
 }
 
 /* ===== FORMATION — ARBRE GÉNÉALOGIQUE ===== */
