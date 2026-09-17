@@ -71,7 +71,7 @@
       if (response.ok) {
         form.reset();
         if (status) {
-          status.textContent = '✓ Message envoyé avec succès ! Je vous répondrai rapidement.';
+          status.textContent = 'Message envoyé avec succès ! Je vous répondrai rapidement.';
           status.className = 'form-status success';
         }
       } else {
@@ -79,7 +79,7 @@
       }
     } catch {
       if (status) {
-        status.textContent = "✗ Une erreur s'est produite. Réessayez ou écrivez-moi directement par email.";
+        status.textContent = "Une erreur s'est produite. Réessayez ou écrivez-moi directement par email.";
         status.className = 'form-status error';
       }
     } finally {
